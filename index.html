@@ -124,6 +124,25 @@ dialog.work::backdrop{background:rgba(10,12,20,.6)}
 .work .bd .lbl{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--blue)}
 .work .close{position:absolute;top:10px;right:12px;appearance:none;border:0;background:none;color:var(--on-blue);font-size:1.6rem;cursor:pointer;line-height:1}
 
+
+/* hero con foto */
+.hero{position:relative;background:#0d0e12 url("pulcinella.jpg") right center/auto 100% no-repeat;color:#f2f1ec;border-bottom:0;padding-block:110px 90px;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#0d0e12 0%,#0d0e12 38%,rgba(13,14,18,.82) 58%,rgba(13,14,18,.15) 100%)}
+.hero .eyebrow,.hero .lede,.hero .bridge small{color:#c3c5ce}
+.hero h1 em{color:#e8b84a}
+.hero .btn{border-color:#f2f1ec;color:#f2f1ec}
+.hero .btn.solid{background:#e8b84a;border-color:#e8b84a;color:#16192a}
+.hero .bridge .arrow{color:#e8b84a}
+@media (max-width:760px){.hero{background-size:cover;background-position:62% top;padding-block:72px 56px}.hero::before{background:linear-gradient(180deg,rgba(13,14,18,.55) 0%,rgba(13,14,18,.86) 45%,#0d0e12 100%)}}
+/* motto */
+.motto{padding-block:64px;background:var(--paper-2);border-bottom:1px solid var(--line);text-align:center}
+.motto p{font-family:var(--display);font-style:italic;font-size:clamp(2.4rem,8vw,5.2rem);line-height:1;color:var(--blue)}
+/* acquista */
+.work-item{display:grid;gap:10px;scroll-snap-align:start;align-content:start}
+.buy{display:block;text-align:center;padding:12px 16px;font:600 .9rem var(--body);text-decoration:none;border:1px solid var(--ink);color:var(--ink);border-radius:2px}
+.buy:hover{background:var(--ink);color:var(--paper)}
+.buy:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+
 /* repertorio: elenco a locandina */
 .rep{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px}
 .rep h3{font-size:1.15rem;font-family:var(--body);font-weight:600;letter-spacing:.02em;padding-bottom:10px;border-bottom:2px solid var(--ink);margin-bottom:6px}
@@ -257,6 +276,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     </div>
   </section>
 
+  <div class="motto" role="note">
+    <div class="wrap"><p>Il teatro è vita!</p></div>
+  </div>
+
   <section id="attivita">
     <div class="wrap">
       <div class="sec-head">
@@ -295,21 +318,30 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         <h2><span lang="it">Eduardo, con un titolo nuovo.</span><span lang="en">Eduardo, under a new title.</span></h2>
       </div>
       <div class="works">
+        <div class="work-item">
         <button class="poster p1" type="button" data-open="w1" id="card-w1">
           <span class="yr">Eduardo De Filippo · 1946</span>
           <span><span class="ti">These Caspers</span><br><span class="og">Questi fantasmi!</span></span>
           <span class="more"><span lang="it">Scopri l'opera →</span><span lang="en">Discover the play →</span></span>
         </button>
+          <a class="buy" href="#contatti"><span lang="it">Acquista lo spettacolo</span><span lang="en">Book this show</span></a>
+        </div>
+        <div class="work-item">
         <button class="poster p2" type="button" data-open="w2" id="card-w2">
           <span class="yr">Eduardo De Filippo · 1945</span>
           <span><span class="ti">Million Dollar City</span><br><span class="og">Napoli milionaria!</span></span>
           <span class="more"><span lang="it">Scopri l'opera →</span><span lang="en">Discover the play →</span></span>
         </button>
+          <a class="buy" href="#contatti"><span lang="it">Acquista lo spettacolo</span><span lang="en">Book this show</span></a>
+        </div>
+        <div class="work-item">
         <button class="poster p3" type="button" data-open="w3" id="card-w3">
           <span class="yr">Eduardo De Filippo · 1940</span>
           <span><span class="ti">Authorization Denied</span><br><span class="og">Non ti pago</span></span>
           <span class="more"><span lang="it">Scopri l'opera →</span><span lang="en">Discover the play →</span></span>
         </button>
+          <a class="buy" href="#contatti"><span lang="it">Acquista lo spettacolo</span><span lang="en">Book this show</span></a>
+        </div>
       </div>
       <p class="hint"><span lang="it">Tocca una locandina per leggere la storia. Scorri per vederle tutte.</span><span lang="en">Tap a poster to read the story. Scroll to see them all.</span></p>
     </div>
@@ -371,38 +403,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         <div><strong><span lang="it">Progetti su misura</span><span lang="en">Tailored projects</span></strong><p lang="it">Costruiamo ogni proposta con il partner: testo, lingua, durata e pubblico.</p><p lang="en">We build each proposal with the partner: text, language, length and audience.</p></div>
         <div><strong><span lang="it">Musica dal vivo</span><span lang="en">Live music</span></strong><p lang="it">Possibile accompagnamento musicale con repertorio napoletano.</p><p lang="en">Optional live accompaniment with Neapolitan repertoire.</p></div>
         <div><strong><span lang="it">Materiali didattici</span><span lang="en">Learning materials</span></strong><p lang="it">Schede sui testi e sul contesto storico per il pubblico e le scuole.</p><p lang="en">Notes on the texts and their history for audiences and schools.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="team">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow"><span lang="it">Fondatori</span><span lang="en">Founders</span></p>
-        <h2><span lang="it">Le persone dietro il progetto.</span><span lang="en">The people behind the project.</span></h2>
-      </div>
-      <div class="team">
-        <div class="person">
-          <div class="portrait" aria-hidden="true">P</div>
-          <span class="role"><span lang="it">Co-fondatore · Direzione musicale</span><span lang="en">Co-founder · Music direction</span></span>
-          <h3>Paolo Rubinacci</h3>
-          <p lang="it">Pianista e compositore di radici napoletane, con base a Parigi. Organizzatore di eventi culturali alla Cité internationale universitaire de Paris.</p>
-          <p lang="en">Pianist and composer with Neapolitan roots, based in Paris. Organiser of cultural events at the Cité internationale universitaire de Paris.</p>
-        </div>
-        <div class="person">
-          <div class="portrait" aria-hidden="true">2</div>
-          <span class="role"><span lang="it">Co-fondatore · Ruolo da definire</span><span lang="en">Co-founder · Role to confirm</span></span>
-          <h3><span lang="it">Nome Cognome</span><span lang="en">First Last</span></h3>
-          <p lang="it">Breve biografia da inserire.</p>
-          <p lang="en">Short biography to be added.</p>
-        </div>
-        <div class="person">
-          <div class="portrait" aria-hidden="true">3</div>
-          <span class="role"><span lang="it">Co-fondatore · Ruolo da definire</span><span lang="en">Co-founder · Role to confirm</span></span>
-          <h3><span lang="it">Nome Cognome</span><span lang="en">First Last</span></h3>
-          <p lang="it">Breve biografia da inserire.</p>
-          <p lang="en">Short biography to be added.</p>
-        </div>
       </div>
     </div>
   </section>
