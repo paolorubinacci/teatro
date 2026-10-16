@@ -17,7 +17,7 @@
   --ink:#16192a;
   --muted:#545a6e;
   --blue:#1f3d7a;
-  --yellow:#d9a21b;
+  --yellow:#1f3d7a;
   --line:#cfd0c8;
   --on-blue:#f7f6f1;
   --display:"Bodoni Moda","Didot","Times New Roman",serif;
@@ -25,10 +25,10 @@
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --paper:#12141e;--paper-2:#1b1e2c;--ink:#ecebe3;--muted:#a6abbd;
-  --blue:#8fa9e6;--yellow:#e8b84a;--line:#2e3244;--on-blue:#12141e;color-scheme:dark}}
+  --blue:#8fa9e6;--yellow:#8fa9e6;--line:#2e3244;--on-blue:#12141e;color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#12141e;--paper-2:#1b1e2c;--ink:#ecebe3;--muted:#a6abbd;
-  --blue:#8fa9e6;--yellow:#e8b84a;--line:#2e3244;--on-blue:#12141e;color-scheme:dark}
+  --blue:#8fa9e6;--yellow:#8fa9e6;--line:#2e3244;--on-blue:#12141e;color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -127,13 +127,13 @@ dialog.work::backdrop{background:rgba(10,12,20,.6)}
 
 /* hero con foto */
 .hero{position:relative;background:#0d0e12 url("pulcinella.jpg") right center/auto 100% no-repeat;color:#f2f1ec;border-bottom:0;padding-block:clamp(36px,9vh,96px) clamp(32px,8vh,80px);isolation:isolate}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#0d0e12 0%,#0d0e12 38%,rgba(13,14,18,.82) 58%,rgba(13,14,18,.15) 100%)}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#0d0e12 0%,#0d0e12 56%,rgba(13,14,18,.7) 66%,rgba(13,14,18,.1) 88%,rgba(13,14,18,0) 100%)}
 .hero .eyebrow,.hero .lede,.hero .bridge small{color:#c3c5ce}
-.hero h1 em{color:#e8b84a}
+.hero h1 em{color:#9db3ea}
 .hero .btn{border-color:#f2f1ec;color:#f2f1ec}
-.hero .btn.solid{background:#e8b84a;border-color:#e8b84a;color:#16192a}
-.hero .bridge .arrow{color:#e8b84a}
-@media (max-width:760px){.hero{background-size:cover;background-position:62% top;padding-block:72px 56px}.hero::before{background:linear-gradient(180deg,rgba(13,14,18,.55) 0%,rgba(13,14,18,.86) 45%,#0d0e12 100%)}}
+.hero .btn.solid{background:#f2f1ec;border-color:#f2f1ec;color:#0d0e12}
+.hero .bridge .arrow{color:#9db3ea}
+@media (max-width:760px){.hero{background-size:cover;background-position:62% top;padding-block:72px 56px}.hero::before{background:linear-gradient(180deg,rgba(13,14,18,.25) 0%,rgba(13,14,18,.55) 30%,rgba(13,14,18,.88) 60%,#0d0e12 100%)}}
 /* motto */
 .motto{padding-block:64px;background:var(--paper-2);border-bottom:1px solid var(--line);text-align:center}
 .motto p{font-family:var(--display);font-style:italic;font-size:clamp(2.4rem,8vw,5.2rem);line-height:1;color:var(--blue)}
@@ -145,21 +145,25 @@ dialog.work::backdrop{background:rgba(10,12,20,.6)}
 
 
 /* hero compatto: tutto visibile all'apertura */
-.hero h1{font-size:clamp(2.1rem,5vw,4.3rem);margin-top:12px}
+.hero h1{font-size:clamp(2.1rem,4.6vw,4rem);margin-top:12px;max-width:17ch}
 .hero .lede{font-size:1.05rem;margin-top:16px}
 .hero .cta{margin-top:22px}
-.hero .bridge{margin-top:28px}
+.hero .bridge{margin-top:28px;max-width:560px}
 @media (max-height:620px) and (orientation:landscape){.hero{padding-block:24px}.hero h1{font-size:clamp(1.8rem,4vw,2.6rem)}.hero .lede{font-size:.95rem;margin-top:10px}.hero .cta{margin-top:14px}.hero .bridge{display:none}}
 /* alternanza sezioni: nero / bianco, accenti blu e giallo */
-.dark{--paper:#0d0e12;--paper-2:#15171e;--ink:#f2f1ec;--muted:#a9acb8;--line:#2a2d38;--blue:#8fa9e6;--yellow:#e8b84a;--on-blue:#0d0e12;background:var(--paper);color:var(--ink);color-scheme:dark}
-.dark .sec-head h2 em,.dark .eyebrow{color:var(--yellow)}
-.motto{background:#1f3d7a;border-bottom:0}
-.motto p{color:#e8b84a}
+.dark{--paper:#0d0e12;--paper-2:#15171e;--ink:#f2f1ec;--muted:#a9acb8;--line:#2a2d38;--blue:#9db3ea;--yellow:#9db3ea;--on-blue:#0d0e12;background:var(--paper);color:var(--ink);color-scheme:dark}
+.dark .eyebrow{color:var(--muted)}
+.motto{background:#0d0e12;border-bottom:0}
+.motto p{color:#f2f1ec}.motto p em{color:#9db3ea;font-style:italic}
 .poster.p1{background:#1f3d7a;color:#f2f1ec}
-.poster.p3{background:#e8b84a;color:#16192a}
+.poster.p3{background:#1b1e27;color:#f2f1ec}
 .work-actions{display:grid;gap:8px}
-.buy.amz{background:var(--yellow);border-color:var(--yellow);color:#16192a}
-.buy.amz:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.buy.amz{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.buy.amz:hover{background:var(--blue);border-color:var(--blue);color:var(--on-blue)}
+
+
+.hero.dark{background:#0d0e12 url("pulcinella.jpg") right center/auto 100% no-repeat}
+@media (max-width:760px){.hero.dark{background-size:cover;background-position:62% top}}
 
 /* repertorio: elenco a locandina */
 .rep{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px}
@@ -271,7 +275,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     </div>
   </section>
 
-  <section id="missione" class="dark">
+  <section id="missione">
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow"><span lang="it">Missione</span><span lang="en">Mission</span></p>
@@ -295,7 +299,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
   </section>
 
   <div class="motto" role="note">
-    <div class="wrap"><p>Il teatro è vita!</p></div>
+    <div class="wrap"><p>Il teatro <em>è vita!</em></p></div>
   </div>
 
   <section id="attivita">
@@ -404,7 +408,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     </div>
   </section>
 
-  <section id="partner" class="partners dark">
+  <section id="partner" class="partners">
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow"><span lang="it">Per i centri culturali</span><span lang="en">For cultural centres</span></p>
