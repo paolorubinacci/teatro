@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ponti di Scena</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Associazione culturale per la diffusione del teatro napoletano in Europa e lo scambio tra tradizioni teatrali.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..700&family=Libre+Franklin:wght@400;500;600&display=swap">
+<style>
+/* Layout: locandina teatrale su carta, colonna centrale, blu e giallo delle maioliche napoletane */
+:root{
+  --paper:#f7f6f1;
+  --paper-2:#ecebe3;
+  --ink:#16192a;
+  --muted:#545a6e;
+  --blue:#1f3d7a;
+  --yellow:#d9a21b;
+  --line:#cfd0c8;
+  --on-blue:#f7f6f1;
+  --display:"Bodoni Moda","Didot","Times New Roman",serif;
+  --body:"Libre Franklin","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#12141e;--paper-2:#1b1e2c;--ink:#ecebe3;--muted:#a6abbd;
+  --blue:#8fa9e6;--yellow:#e8b84a;--line:#2e3244;--on-blue:#12141e;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#12141e;--paper-2:#1b1e2c;--ink:#ecebe3;--muted:#a6abbd;
+  --blue:#8fa9e6;--yellow:#e8b84a;--line:#2e3244;--on-blue:#12141e;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.1;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:var(--blue)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+
+/* lingua */
+:root[lang="it"] [lang="en"]{display:none}
+:root[lang="en"] [lang="it"]{display:none}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--paper);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.brand{font-family:var(--display);font-size:1.35rem;font-weight:600;text-decoration:none;color:var(--ink);letter-spacing:.01em}
+.brand i{color:var(--blue)}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+nav a{text-decoration:none;color:var(--ink);font-size:.88rem;font-weight:500}
+nav a:hover{color:var(--blue)}
+.lang{display:flex;border:1px solid var(--ink);border-radius:2px;overflow:hidden;flex-shrink:0}
+.lang button{background:none;border:0;color:var(--ink);font:600 .75rem var(--body);letter-spacing:.08em;padding:6px 10px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+@media (max-width:860px){nav{display:none}}
+
+/* hero */
+.hero{padding-block:72px 56px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.74rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.6rem,7vw,5.4rem);font-weight:400;margin-top:18px;max-width:14ch}
+.hero h1 em{color:var(--blue);font-style:italic}
+.hero .lede{font-size:1.15rem;max-width:58ch;margin-top:26px;color:var(--muted)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.btn{display:inline-block;padding:12px 22px;font:600 .9rem var(--body);text-decoration:none;border:1px solid var(--ink);color:var(--ink);border-radius:2px}
+.btn.solid{background:var(--blue);border-color:var(--blue);color:var(--on-blue)}
+.btn:hover{border-color:var(--yellow)}
+
+/* il ponte: due direzioni */
+.bridge{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;margin-top:52px;max-width:760px}
+.bridge div{font-family:var(--display);font-size:1.25rem}
+.bridge small{display:block;font-family:var(--body);font-size:.8rem;color:var(--muted);margin-top:4px}
+.bridge .arrow{font-family:var(--display);font-size:1.8rem;color:var(--yellow);text-align:center;line-height:1}
+.bridge div:last-child{text-align:right}
+
+/* sezioni */
+section{padding-block:72px;border-bottom:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:220px 1fr;gap:32px;margin-bottom:40px}
+.sec-head .eyebrow{padding-top:10px}
+.sec-head h2{font-size:clamp(1.9rem,4vw,2.8rem)}
+.body{margin-left:252px;max-width:65ch;display:grid;gap:18px;font-size:1.04rem}
+@media (max-width:760px){.sec-head{grid-template-columns:1fr;gap:10px}.body{margin-left:0}}
+
+/* missione */
+.dirs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-left:252px;border-top:2px solid var(--ink)}
+.dir{padding:26px 26px 26px 0;display:grid;gap:10px}
+.dir+.dir{padding-left:26px;border-left:1px solid var(--line)}
+.dir h3{font-size:1.5rem}
+.dir .tag{font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+@media (max-width:760px){.dirs{margin-left:0;grid-template-columns:1fr}.dir+.dir{padding-left:0;border-left:0;border-top:1px solid var(--line)}}
+
+/* attività */
+.acts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.act{background:var(--paper);padding:30px;display:grid;gap:10px;align-content:start}
+.act h3{font-size:1.4rem}
+.act p{color:var(--muted)}
+@media (max-width:640px){.acts{grid-template-columns:1fr}}
+
+
+/* opere in evidenza: locandine scorrevoli */
+.works{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(240px,1fr);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px}
+.poster{scroll-snap-align:start;appearance:none;border:0;cursor:pointer;text-align:left;aspect-ratio:3/4;max-width:100%;padding:24px;display:flex;flex-direction:column;justify-content:space-between;border-radius:2px;font:inherit;position:relative;overflow:hidden}
+.poster.p1{background:var(--blue);color:var(--on-blue)}
+.poster.p2{background:var(--ink);color:var(--paper)}
+.poster.p3{background:var(--yellow);color:#16192a}
+.poster::after{content:"";position:absolute;inset:12px;border:1px solid currentColor;opacity:.35;pointer-events:none}
+.poster .yr{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;opacity:.85}
+.poster .ti{font-family:var(--display);font-size:2.1rem;line-height:1.02;text-wrap:balance}
+.poster .og{font-family:var(--display);font-style:italic;font-size:1rem;opacity:.9}
+.poster .more{font-size:.78rem;font-weight:600;letter-spacing:.06em}
+.poster:hover .more,.poster:focus-visible .more{text-decoration:underline}
+.poster:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+.hint{margin-top:14px;font-size:.86rem;color:var(--muted)}
+dialog.work{border:0;padding:0;max-width:min(620px,calc(100% - 32px));width:100%;background:var(--paper);color:var(--ink);border-radius:2px}
+dialog.work::backdrop{background:rgba(10,12,20,.6)}
+.work .head{padding:26px 26px 18px;background:var(--blue);color:var(--on-blue)}
+.work .head .yr{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;opacity:.85}
+.work .head h3{font-size:2rem;margin-top:8px}
+.work .head .og{font-family:var(--display);font-style:italic;margin-top:4px}
+.work .bd{padding:22px 26px 26px;display:grid;gap:14px}
+.work .bd p{color:var(--ink)}
+.work .bd .lbl{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--blue)}
+.work .close{position:absolute;top:10px;right:12px;appearance:none;border:0;background:none;color:var(--on-blue);font-size:1.6rem;cursor:pointer;line-height:1}
+
+/* repertorio: elenco a locandina */
+.rep{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px}
+.rep h3{font-size:1.15rem;font-family:var(--body);font-weight:600;letter-spacing:.02em;padding-bottom:10px;border-bottom:2px solid var(--ink);margin-bottom:6px}
+.rep ul{list-style:none;margin:0;padding:0}
+.rep li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px dotted var(--line)}
+.rep li span:first-child{font-family:var(--display);font-style:italic;font-size:1.1rem}
+.rep li span:last-child{color:var(--muted);font-size:.88rem;text-align:right;white-space:nowrap}
+.note{margin-top:28px;font-size:.86rem;color:var(--muted);max-width:70ch}
+@media (max-width:760px){.rep{grid-template-columns:1fr}.rep li span:last-child{white-space:normal}}
+
+/* formati per centri culturali */
+.partners{background:var(--paper-2)}
+.formats{width:100%;border-collapse:collapse;font-size:.95rem}
+.tablebox{overflow-x:auto}
+.formats th,.formats td{text-align:left;padding:16px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.formats th{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:2px solid var(--ink)}
+.formats td:first-child{font-family:var(--display);font-size:1.15rem;min-width:180px}
+.formats td{min-width:140px}
+.offer{margin-top:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.offer div{display:grid;gap:6px}
+.offer strong{font-family:var(--display);font-size:1.15rem;font-weight:500}
+.offer p{color:var(--muted);font-size:.95rem}
+@media (max-width:760px){.offer{grid-template-columns:1fr}}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.person{display:grid;gap:8px;align-content:start}
+.portrait{aspect-ratio:4/5;max-width:100%;background:var(--paper-2);border:1px solid var(--line);display:grid;place-items:center;font-family:var(--display);font-size:2.4rem;color:var(--blue)}
+.person h3{font-size:1.3rem;margin-top:8px}
+.person .role{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:600}
+.person p{color:var(--muted);font-size:.95rem}
+@media (max-width:760px){.team{grid-template-columns:1fr}.portrait{aspect-ratio:3/2}}
+
+/* contatti */
+.contact{background:var(--blue);color:var(--on-blue);border-bottom:0}
+.contact .eyebrow{color:var(--on-blue);opacity:.75}
+.contact h2{font-size:clamp(2rem,5vw,3.4rem);max-width:18ch;margin-top:14px}
+.contact .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:44px}
+.contact .grid div{display:grid;gap:4px;border-top:1px solid currentColor;padding-top:14px}
+.contact .grid span{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.contact .grid b{font-weight:500;font-size:1.05rem;user-select:all;word-break:break-word}
+@media (max-width:760px){.contact .grid{grid-template-columns:1fr}}
+footer{padding-block:28px;font-size:.82rem;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+</style>
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Ponti <i>di</i> Scena</a>
+    <nav aria-label="Menu">
+      <ul>
+        <li><a href="#chi-siamo"><span lang="it">Chi siamo</span><span lang="en">About</span></a></li>
+        <li><a href="#missione"><span lang="it">Missione</span><span lang="en">Mission</span></a></li>
+        <li><a href="#attivita"><span lang="it">Attività</span><span lang="en">Activities</span></a></li>
+        <li><a href="#opere"><span lang="it">Opere</span><span lang="en">Productions</span></a></li>
+        <li><a href="#repertorio"><span lang="it">Repertorio</span><span lang="en">Repertoire</span></a></li>
+        <li><a href="#partner"><span lang="it">Per i centri culturali</span><span lang="en">For cultural centres</span></a></li>
+        <li><a href="#contatti"><span lang="it">Contatti</span><span lang="en">Contact</span></a></li>
+      </ul>
+    </nav>
+    <div class="lang" role="group" aria-label="Lingua / Language">
+      <button id="btn-it" type="button" aria-pressed="true" data-l="it">IT</button>
+      <button id="btn-en" type="button" aria-pressed="false" data-l="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <p class="eyebrow"><span lang="it">Associazione culturale · Napoli – Europa</span><span lang="en">Cultural association · Naples – Europe</span></p>
+      <h1>
+        <span lang="it">Il teatro napoletano parla <em>tutte le lingue</em> d'Europa.</span>
+        <span lang="en">Neapolitan theatre speaks <em>every language</em> in Europe.</span>
+      </h1>
+      <p class="lede">
+        <span lang="it">Traduciamo le grandi opere del teatro napoletano nelle lingue europee e portiamo i classici del teatro europeo in napoletano. Due direzioni, un solo palcoscenico.</span>
+        <span lang="en">We translate the great works of Neapolitan theatre into European languages and bring the classics of European theatre into Neapolitan. Two directions, one stage.</span>
+      </p>
+      <div class="cta">
+        <a class="btn solid" href="#partner"><span lang="it">Collabora con noi</span><span lang="en">Work with us</span></a>
+        <a class="btn" href="#repertorio"><span lang="it">Scopri il repertorio</span><span lang="en">Explore the repertoire</span></a>
+      </div>
+      <div class="bridge" aria-hidden="true">
+        <div>Napoli<small><span lang="it">Eduardo, Scarpetta, Viviani</span><span lang="en">Eduardo, Scarpetta, Viviani</span></small></div>
+        <div class="arrow">⇄</div>
+        <div>Europa<small><span lang="it">Molière, Shakespeare, Čechov</span><span lang="en">Molière, Shakespeare, Chekhov</span></small></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="chi-siamo">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow"><span lang="it">Chi siamo</span><span lang="en">About us</span></p>
+        <h2><span lang="it">Tre napoletani in Europa, una lingua teatrale da condividere.</span><span lang="en">Three Neapolitans in Europe, one theatrical language to share.</span></h2>
+      </div>
+      <div class="body">
+        <p lang="it">Ponti di Scena è un'associazione culturale fondata da tre artisti di origine napoletana che vivono e lavorano all'estero. Il napoletano è una delle grandi lingue del teatro europeo: da Scarpetta a Eduardo De Filippo, ha prodotto un repertorio che racconta l'umanità con un'ironia e una profondità riconoscibili ovunque.</p>
+        <p lang="en">Ponti di Scena is a cultural association founded by three artists of Neapolitan origin who live and work abroad. Neapolitan is one of the great languages of European theatre: from Scarpetta to Eduardo De Filippo, it has produced a repertoire that portrays humanity with irony and depth recognised everywhere.</p>
+        <p lang="it">Vogliamo far conoscere questo patrimonio al pubblico europeo nella sua lingua, e allo stesso tempo mettere il napoletano alla prova dei grandi testi delle altre tradizioni.</p>
+        <p lang="en">We want to bring this heritage to European audiences in their own languages, and at the same time test Neapolitan against the great texts of other traditions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="missione">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow"><span lang="it">Missione</span><span lang="en">Mission</span></p>
+        <h2><span lang="it">Un ponte che si attraversa nei due sensi.</span><span lang="en">A bridge you can cross both ways.</span></h2>
+      </div>
+      <div class="dirs">
+        <div class="dir">
+          <span class="tag"><span lang="it">Napoli → Europa</span><span lang="en">Naples → Europe</span></span>
+          <h3><span lang="it">Tradurre il teatro napoletano</span><span lang="en">Translating Neapolitan theatre</span></h3>
+          <p lang="it">Traduzioni e adattamenti in francese, inglese, spagnolo e altre lingue europee, curati per la scena e non solo per la lettura, conservando ritmo, musica e comicità dell'originale.</p>
+          <p lang="en">Translations and adaptations into French, English, Spanish and other European languages, written for the stage rather than only for the page, keeping the rhythm, music and comedy of the original.</p>
+        </div>
+        <div class="dir">
+          <span class="tag"><span lang="it">Europa → Napoli</span><span lang="en">Europe → Naples</span></span>
+          <h3><span lang="it">Portare i classici in napoletano</span><span lang="en">Bringing the classics into Neapolitan</span></h3>
+          <p lang="it">Riscritture in napoletano di opere del repertorio europeo, sulla strada aperta da Eduardo con la sua Tempesta di Shakespeare: un modo nuovo di ascoltare testi che si credevano conosciuti.</p>
+          <p lang="en">Neapolitan versions of works from the European repertoire, following the path Eduardo opened with his Neapolitan Tempest: a new way of hearing texts we thought we knew.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="attivita">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow"><span lang="it">Attività</span><span lang="en">Activities</span></p>
+        <h2><span lang="it">Dalla pagina al palcoscenico.</span><span lang="en">From the page to the stage.</span></h2>
+      </div>
+      <div class="acts">
+        <div class="act">
+          <h3><span lang="it">Traduzione e adattamento</span><span lang="en">Translation and adaptation</span></h3>
+          <p lang="it">Testi teatrali tradotti per la scena, con note sul contesto napoletano e sulla lingua.</p>
+          <p lang="en">Stage-ready translations, with notes on the Neapolitan context and language.</p>
+        </div>
+        <div class="act">
+          <h3><span lang="it">Letture sceniche e spettacoli</span><span lang="en">Staged readings and performances</span></h3>
+          <p lang="it">Letture bilingui e messe in scena, anche con musica dal vivo della tradizione napoletana.</p>
+          <p lang="en">Bilingual readings and productions, also with live music from the Neapolitan tradition.</p>
+        </div>
+        <div class="act">
+          <h3><span lang="it">Laboratori</span><span lang="en">Workshops</span></h3>
+          <p lang="it">Laboratori di recitazione e di lingua napoletana per attori, studenti e appassionati.</p>
+          <p lang="en">Acting and Neapolitan-language workshops for actors, students and enthusiasts.</p>
+        </div>
+        <div class="act">
+          <h3><span lang="it">Incontri e scambi</span><span lang="en">Talks and exchanges</span></h3>
+          <p lang="it">Conferenze, tavole rotonde e progetti condivisi con compagnie e teatri di altri paesi.</p>
+          <p lang="en">Talks, round tables and joint projects with companies and theatres from other countries.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="opere">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow"><span lang="it">Le nostre opere</span><span lang="en">Our productions</span></p>
+        <h2><span lang="it">Eduardo, con un titolo nuovo.</span><span lang="en">Eduardo, under a new title.</span></h2>
+      </div>
+      <div class="works">
+        <button class="poster p1" type="button" data-open="w1" id="card-w1">
+          <span class="yr">Eduardo De Filippo · 1946</span>
+          <span><span class="ti">These Caspers</span><br><span class="og">Questi fantasmi!</span></span>
+          <span class="more"><span lang="it">Scopri l'opera →</span><span lang="en">Discover the play →</span></span>
+        </button>
+        <button class="poster p2" type="button" data-open="w2" id="card-w2">
+          <span class="yr">Eduardo De Filippo · 1945</span>
+          <span><span class="ti">Million Dollar City</span><br><span class="og">Napoli milionaria!</span></span>
+          <span class="more"><span lang="it">Scopri l'opera →</span><span lang="en">Discover the play →</span></span>
+        </button>
+        <button class="poster p3" type="button" data-open="w3" id="card-w3">
+          <span class="yr">Eduardo De Filippo · 1940</span>
+          <span><span class="ti">Authorization Denied</span><br><span class="og">Non ti pago</span></span>
+          <span class="more"><span lang="it">Scopri l'opera →</span><span lang="en">Discover the play →</span></span>
+        </button>
+      </div>
+      <p class="hint"><span lang="it">Tocca una locandina per leggere la storia. Scorri per vederle tutte.</span><span lang="en">Tap a poster to read the story. Scroll to see them all.</span></p>
+    </div>
+  </section>
+
+  <section id="repertorio">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow"><span lang="it">Repertorio</span><span lang="en">Repertoire</span></p>
+        <h2><span lang="it">Opere su cui lavoriamo.</span><span lang="en">Works we are developing.</span></h2>
+      </div>
+      <div class="rep">
+        <div>
+          <h3><span lang="it">Dal napoletano</span><span lang="en">From Neapolitan</span></h3>
+          <ul>
+            <li><span>Natale in casa Cupiello</span><span>Eduardo De Filippo</span></li>
+            <li><span>Filumena Marturano</span><span>Eduardo De Filippo</span></li>
+            <li><span>Miseria e nobiltà</span><span>Eduardo Scarpetta</span></li>
+            <li><span>Sabato, domenica e lunedì</span><span>Eduardo De Filippo</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3><span lang="it">In napoletano</span><span lang="en">Into Neapolitan</span></h3>
+          <ul>
+            <li><span>Le Malade imaginaire</span><span>Molière</span></li>
+            <li><span>A Midsummer Night's Dream</span><span>Shakespeare</span></li>
+            <li><span>La casa de Bernarda Alba</span><span>García Lorca</span></li>
+            <li><span>Il giardino dei ciliegi</span><span>Čechov</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="note"><span lang="it">Titoli indicativi: il programma definitivo dipende dai diritti d'autore e dai progetti concordati con i partner.</span><span lang="en">Indicative titles: the final programme depends on rights clearance and on projects agreed with partners.</span></p>
+    </div>
+  </section>
+
+  <section id="partner" class="partners">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow"><span lang="it">Per i centri culturali</span><span lang="en">For cultural centres</span></p>
+        <h2><span lang="it">Formati pensati per istituti, teatri e festival.</span><span lang="en">Formats designed for institutes, theatres and festivals.</span></h2>
+      </div>
+      <div class="tablebox">
+        <table class="formats">
+          <thead><tr>
+            <th><span lang="it">Formato</span><span lang="en">Format</span></th>
+            <th><span lang="it">Durata</span><span lang="en">Length</span></th>
+            <th><span lang="it">Lingue</span><span lang="en">Languages</span></th>
+            <th><span lang="it">Ideale per</span><span lang="en">Best for</span></th>
+          </tr></thead>
+          <tbody>
+            <tr><td><span lang="it">Lettura scenica bilingue</span><span lang="en">Bilingual staged reading</span></td><td>60–75 min</td><td><span lang="it">Napoletano + lingua locale</span><span lang="en">Neapolitan + local language</span></td><td><span lang="it">Istituti italiani di cultura, biblioteche</span><span lang="en">Italian cultural institutes, libraries</span></td></tr>
+            <tr><td><span lang="it">Spettacolo</span><span lang="en">Full performance</span></td><td>90–120 min</td><td><span lang="it">Lingua del pubblico, sovratitoli</span><span lang="en">Audience language, surtitles</span></td><td><span lang="it">Teatri, festival</span><span lang="en">Theatres, festivals</span></td></tr>
+            <tr><td><span lang="it">Laboratorio</span><span lang="en">Workshop</span></td><td><span lang="it">1–5 giorni</span><span lang="en">1–5 days</span></td><td><span lang="it">Su misura</span><span lang="en">Tailored</span></td><td><span lang="it">Scuole, università, compagnie</span><span lang="en">Schools, universities, companies</span></td></tr>
+            <tr><td><span lang="it">Incontro – conferenza</span><span lang="en">Talk – lecture</span></td><td>60 min</td><td><span lang="it">IT · EN · FR</span><span lang="en">IT · EN · FR</span></td><td><span lang="it">Centri culturali, associazioni</span><span lang="en">Cultural centres, associations</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="offer">
+        <div><strong><span lang="it">Progetti su misura</span><span lang="en">Tailored projects</span></strong><p lang="it">Costruiamo ogni proposta con il partner: testo, lingua, durata e pubblico.</p><p lang="en">We build each proposal with the partner: text, language, length and audience.</p></div>
+        <div><strong><span lang="it">Musica dal vivo</span><span lang="en">Live music</span></strong><p lang="it">Possibile accompagnamento musicale con repertorio napoletano.</p><p lang="en">Optional live accompaniment with Neapolitan repertoire.</p></div>
+        <div><strong><span lang="it">Materiali didattici</span><span lang="en">Learning materials</span></strong><p lang="it">Schede sui testi e sul contesto storico per il pubblico e le scuole.</p><p lang="en">Notes on the texts and their history for audiences and schools.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow"><span lang="it">Fondatori</span><span lang="en">Founders</span></p>
+        <h2><span lang="it">Le persone dietro il progetto.</span><span lang="en">The people behind the project.</span></h2>
+      </div>
+      <div class="team">
+        <div class="person">
+          <div class="portrait" aria-hidden="true">P</div>
+          <span class="role"><span lang="it">Co-fondatore · Direzione musicale</span><span lang="en">Co-founder · Music direction</span></span>
+          <h3>Paolo Rubinacci</h3>
+          <p lang="it">Pianista e compositore di radici napoletane, con base a Parigi. Organizzatore di eventi culturali alla Cité internationale universitaire de Paris.</p>
+          <p lang="en">Pianist and composer with Neapolitan roots, based in Paris. Organiser of cultural events at the Cité internationale universitaire de Paris.</p>
+        </div>
+        <div class="person">
+          <div class="portrait" aria-hidden="true">2</div>
+          <span class="role"><span lang="it">Co-fondatore · Ruolo da definire</span><span lang="en">Co-founder · Role to confirm</span></span>
+          <h3><span lang="it">Nome Cognome</span><span lang="en">First Last</span></h3>
+          <p lang="it">Breve biografia da inserire.</p>
+          <p lang="en">Short biography to be added.</p>
+        </div>
+        <div class="person">
+          <div class="portrait" aria-hidden="true">3</div>
+          <span class="role"><span lang="it">Co-fondatore · Ruolo da definire</span><span lang="en">Co-founder · Role to confirm</span></span>
+          <h3><span lang="it">Nome Cognome</span><span lang="en">First Last</span></h3>
+          <p lang="it">Breve biografia da inserire.</p>
+          <p lang="en">Short biography to be added.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contatti" class="contact">
+    <div class="wrap">
+      <p class="eyebrow"><span lang="it">Contatti</span><span lang="en">Contact</span></p>
+      <h2><span lang="it">Portiamo il teatro napoletano nel vostro centro.</span><span lang="en">Let's bring Neapolitan theatre to your venue.</span></h2>
+      <div class="grid">
+        <div><span>Email</span><b>contatto@pontidiscena.org</b></div>
+        <div><span lang="it">Sede</span><span lang="en">Based in</span><b><span lang="it">Parigi · Napoli</span><span lang="en">Paris · Naples</span></b></div>
+        <div><span lang="it">Dossier</span><span lang="en">Press kit</span><b><span lang="it">Su richiesta</span><span lang="en">On request</span></b></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<dialog class="work" id="w1" aria-labelledby="w1-t">
+  <div class="head">
+    <button class="close" type="button" aria-label="Chiudi / Close">×</button>
+    <div class="yr">Eduardo De Filippo · 1946</div>
+    <h3 id="w1-t">These Caspers</h3>
+    <div class="og"><span lang="it">dall'originale</span><span lang="en">from the original</span> Questi fantasmi!</div>
+  </div>
+  <div class="bd">
+    <span class="lbl"><span lang="it">La storia</span><span lang="en">The story</span></span>
+    <p lang="it">Pasquale Lojacono, squattrinato e pieno di idee, prende in affitto un grande appartamento nel cuore di Napoli che tutti dicono infestato dai fantasmi. Quando cominciano ad apparire regali e denaro, Pasquale si convince che siano gli spiriti a proteggerlo. In realtà è l'amante della moglie. Eduardo costruisce una commedia sul confine sottile tra credulità, bisogno e dignità.</p><p lang="en">Pasquale Lojacono, broke and full of schemes, rents a grand flat in the heart of Naples that everyone says is haunted. When gifts and money start to appear, Pasquale convinces himself the spirits are looking after him. In fact it is his wife's lover. Eduardo builds a comedy on the thin line between gullibility, need and dignity.</p>
+    <span class="lbl"><span lang="it">La nostra versione</span><span lang="en">Our version</span></span>
+    <p lang="it">La nostra versione porta i fantasmi di Eduardo in inglese, con un titolo che gioca con l'immaginario del fantasma più famoso dei cartoni animati.</p><p lang="en">Our version brings Eduardo's ghosts into English, with a title that plays on the world's best-known cartoon ghost.</p>
+  </div>
+</dialog>
+<dialog class="work" id="w2" aria-labelledby="w2-t">
+  <div class="head">
+    <button class="close" type="button" aria-label="Chiudi / Close">×</button>
+    <div class="yr">Eduardo De Filippo · 1945</div>
+    <h3 id="w2-t">Million Dollar City</h3>
+    <div class="og"><span lang="it">dall'originale</span><span lang="en">from the original</span> Napoli milionaria!</div>
+  </div>
+  <div class="bd">
+    <span class="lbl"><span lang="it">La storia</span><span lang="en">The story</span></span>
+    <p lang="it">Napoli, durante la Seconda guerra mondiale. Mentre Gennaro Jovine è lontano, la moglie Amalia si arricchisce con il mercato nero. Al suo ritorno Gennaro trova una casa piena di soldi e una famiglia che ha perso la bussola. È il ritratto di una città che sopravvive alla guerra e di un padre che aspetta che passi la notte.</p><p lang="en">Naples, during the Second World War. While Gennaro Jovine is away, his wife Amalia grows rich on the black market. When he returns, Gennaro finds a house full of money and a family that has lost its way. It is the portrait of a city surviving the war, and of a father waiting for the night to pass.</p>
+    <span class="lbl"><span lang="it">La nostra versione</span><span lang="en">Our version</span></span>
+    <p lang="it">Un classico del dopoguerra che parla ancora a ogni città messa alla prova da una crisi.</p><p lang="en">A post-war classic that still speaks to every city tested by a crisis.</p>
+  </div>
+</dialog>
+<dialog class="work" id="w3" aria-labelledby="w3-t">
+  <div class="head">
+    <button class="close" type="button" aria-label="Chiudi / Close">×</button>
+    <div class="yr">Eduardo De Filippo · 1940</div>
+    <h3 id="w3-t">Authorization Denied</h3>
+    <div class="og"><span lang="it">dall'originale</span><span lang="en">from the original</span> Non ti pago</div>
+  </div>
+  <div class="bd">
+    <span class="lbl"><span lang="it">La storia</span><span lang="en">The story</span></span>
+    <p lang="it">Ferdinando Quagliuolo gestisce un banco del lotto ed è ossessionato dalla fortuna. Quando il suo impiegato vince una grossa somma con dei numeri sognati, che a suo dire gli ha dato in sogno il padre defunto di Ferdinando, il padrone si rifiuta di pagare: quella vincita, sostiene, spetta a lui. Ne nasce una commedia irresistibile su superstizione, invidia e testardaggine.</p><p lang="en">Ferdinando Quagliuolo runs a lottery office and is obsessed with luck. When his clerk wins a large sum with numbers dreamt up, he claims, thanks to Ferdinando's late father, the boss refuses to pay: that win, he insists, is rightfully his. The result is an irresistible comedy about superstition, envy and stubbornness.</p>
+    <span class="lbl"><span lang="it">La nostra versione</span><span lang="en">Our version</span></span>
+    <p lang="it">Il titolo inglese trasforma il rifiuto di Ferdinando nel linguaggio di oggi: quello di un pagamento negato.</p><p lang="en">The English title turns Ferdinando's refusal into today's language: a payment declined.</p>
+  </div>
+</dialog>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Ponti di Scena · <span lang="it">Associazione culturale</span><span lang="en">Cultural association</span></span>
+    <span lang="it">Napoli ⇄ Europa</span><span lang="en">Naples ⇄ Europe</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  function set(l){
+    root.lang=l;
+    document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===l?'true':'false')});
+    try{localStorage.setItem('lang',l)}catch(e){}
+  }
+  var saved='it';
+  try{saved=localStorage.getItem('lang')||'it'}catch(e){}
+  set(saved==='en'?'en':'it');
+  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){set(b.dataset.l)})});
+
+document.querySelectorAll('[data-open]').forEach(function(b){b.addEventListener('click',function(){var d=document.getElementById(b.dataset.open);if(d&&d.showModal)d.showModal();});});
+document.querySelectorAll('dialog.work').forEach(function(d){d.querySelector('.close').addEventListener('click',function(){d.close();});d.addEventListener('click',function(e){if(e.target===d)d.close();});});
+})();
+</script>
+
+</body>
+</html>
