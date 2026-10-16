@@ -126,7 +126,7 @@ dialog.work::backdrop{background:rgba(10,12,20,.6)}
 
 
 /* hero con foto */
-.hero{position:relative;background:#0d0e12 url("pulcinella.jpg") right center/auto 100% no-repeat;color:#f2f1ec;border-bottom:0;padding-block:110px 90px;isolation:isolate}
+.hero{position:relative;background:#0d0e12 url("pulcinella.jpg") right center/auto 100% no-repeat;color:#f2f1ec;border-bottom:0;padding-block:clamp(36px,9vh,96px) clamp(32px,8vh,80px);isolation:isolate}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#0d0e12 0%,#0d0e12 38%,rgba(13,14,18,.82) 58%,rgba(13,14,18,.15) 100%)}
 .hero .eyebrow,.hero .lede,.hero .bridge small{color:#c3c5ce}
 .hero h1 em{color:#e8b84a}
@@ -142,6 +142,24 @@ dialog.work::backdrop{background:rgba(10,12,20,.6)}
 .buy{display:block;text-align:center;padding:12px 16px;font:600 .9rem var(--body);text-decoration:none;border:1px solid var(--ink);color:var(--ink);border-radius:2px}
 .buy:hover{background:var(--ink);color:var(--paper)}
 .buy:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+
+
+/* hero compatto: tutto visibile all'apertura */
+.hero h1{font-size:clamp(2.1rem,5vw,4.3rem);margin-top:12px}
+.hero .lede{font-size:1.05rem;margin-top:16px}
+.hero .cta{margin-top:22px}
+.hero .bridge{margin-top:28px}
+@media (max-height:620px) and (orientation:landscape){.hero{padding-block:24px}.hero h1{font-size:clamp(1.8rem,4vw,2.6rem)}.hero .lede{font-size:.95rem;margin-top:10px}.hero .cta{margin-top:14px}.hero .bridge{display:none}}
+/* alternanza sezioni: nero / bianco, accenti blu e giallo */
+.dark{--paper:#0d0e12;--paper-2:#15171e;--ink:#f2f1ec;--muted:#a9acb8;--line:#2a2d38;--blue:#8fa9e6;--yellow:#e8b84a;--on-blue:#0d0e12;background:var(--paper);color:var(--ink);color-scheme:dark}
+.dark .sec-head h2 em,.dark .eyebrow{color:var(--yellow)}
+.motto{background:#1f3d7a;border-bottom:0}
+.motto p{color:#e8b84a}
+.poster.p1{background:#1f3d7a;color:#f2f1ec}
+.poster.p3{background:#e8b84a;color:#16192a}
+.work-actions{display:grid;gap:8px}
+.buy.amz{background:var(--yellow);border-color:var(--yellow);color:#16192a}
+.buy.amz:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 
 /* repertorio: elenco a locandina */
 .rep{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px}
@@ -215,7 +233,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 </header>
 
 <main id="top">
-  <div class="hero">
+  <div class="hero dark">
     <div class="wrap">
       <p class="eyebrow"><span lang="it">Associazione culturale · Napoli – Europa</span><span lang="en">Cultural association · Naples – Europe</span></p>
       <h1>
@@ -253,7 +271,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     </div>
   </section>
 
-  <section id="missione">
+  <section id="missione" class="dark">
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow"><span lang="it">Missione</span><span lang="en">Mission</span></p>
@@ -311,7 +329,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     </div>
   </section>
 
-  <section id="opere">
+  <section id="opere" class="dark">
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow"><span lang="it">Le nostre opere</span><span lang="en">Our productions</span></p>
@@ -324,7 +342,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
           <span><span class="ti">These Caspers</span><br><span class="og">Questi fantasmi!</span></span>
           <span class="more"><span lang="it">Scopri l'opera →</span><span lang="en">Discover the play →</span></span>
         </button>
-          <a class="buy" href="#contatti"><span lang="it">Acquista lo spettacolo</span><span lang="en">Book this show</span></a>
+          <div class="work-actions">
+            <a class="buy amz" href="#" data-amazon><span lang="it">Acquista il copione su Amazon</span><span lang="en">Buy the script on Amazon</span></a>
+            <a class="buy" href="#contatti"><span lang="it">Prenota lo spettacolo</span><span lang="en">Book the show</span></a>
+          </div>
         </div>
         <div class="work-item">
         <button class="poster p2" type="button" data-open="w2" id="card-w2">
@@ -332,7 +353,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
           <span><span class="ti">Million Dollar City</span><br><span class="og">Napoli milionaria!</span></span>
           <span class="more"><span lang="it">Scopri l'opera →</span><span lang="en">Discover the play →</span></span>
         </button>
-          <a class="buy" href="#contatti"><span lang="it">Acquista lo spettacolo</span><span lang="en">Book this show</span></a>
+          <div class="work-actions">
+            <a class="buy amz" href="#" data-amazon><span lang="it">Acquista il copione su Amazon</span><span lang="en">Buy the script on Amazon</span></a>
+            <a class="buy" href="#contatti"><span lang="it">Prenota lo spettacolo</span><span lang="en">Book the show</span></a>
+          </div>
         </div>
         <div class="work-item">
         <button class="poster p3" type="button" data-open="w3" id="card-w3">
@@ -340,7 +364,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
           <span><span class="ti">Authorization Denied</span><br><span class="og">Non ti pago</span></span>
           <span class="more"><span lang="it">Scopri l'opera →</span><span lang="en">Discover the play →</span></span>
         </button>
-          <a class="buy" href="#contatti"><span lang="it">Acquista lo spettacolo</span><span lang="en">Book this show</span></a>
+          <div class="work-actions">
+            <a class="buy amz" href="#" data-amazon><span lang="it">Acquista il copione su Amazon</span><span lang="en">Buy the script on Amazon</span></a>
+            <a class="buy" href="#contatti"><span lang="it">Prenota lo spettacolo</span><span lang="en">Book the show</span></a>
+          </div>
         </div>
       </div>
       <p class="hint"><span lang="it">Tocca una locandina per leggere la storia. Scorri per vederle tutte.</span><span lang="en">Tap a poster to read the story. Scroll to see them all.</span></p>
@@ -377,7 +404,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     </div>
   </section>
 
-  <section id="partner" class="partners">
+  <section id="partner" class="partners dark">
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow"><span lang="it">Per i centri culturali</span><span lang="en">For cultural centres</span></p>
@@ -485,6 +512,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 
 document.querySelectorAll('[data-open]').forEach(function(b){b.addEventListener('click',function(){var d=document.getElementById(b.dataset.open);if(d&&d.showModal)d.showModal();});});
 document.querySelectorAll('dialog.work').forEach(function(d){d.querySelector('.close').addEventListener('click',function(){d.close();});d.addEventListener('click',function(e){if(e.target===d)d.close();});});
+document.querySelectorAll('[data-amazon]').forEach(function(a){if(a.getAttribute('href')==='#')a.addEventListener('click',function(e){e.preventDefault();});});
 })();
 </script>
 
