@@ -389,6 +389,30 @@ body.menu-open .c-motto{opacity:1;transition-delay:.8s}
   .hero-in{max-width:640px}
   .cue{display:none}
 }
+
+/* ===== aggiornamento 17/10 (4): sfera Napoli ⇄ Europa, foto nei contatti ===== */
+.hero .bridge{align-items:center;gap:22px}
+.hero .bridge .pole{will-change:transform}
+.hero .bridge .arrow{position:relative;width:52px;height:52px;padding:0;border:1px solid rgba(242,182,50,.85);border-radius:50%;cursor:pointer;color:var(--yellow);display:grid;place-items:center;background:radial-gradient(circle at 34% 28%,rgba(242,182,50,.32),rgba(242,182,50,.06) 58%,rgba(13,14,18,.2) 100%);box-shadow:0 0 0 6px rgba(242,182,50,.07),inset 0 -6px 12px rgba(0,0,0,.35);transition:transform .7s cubic-bezier(.65,0,.25,1),background .3s,box-shadow .3s;line-height:0;font-size:0}
+.hero .bridge .arrow svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;display:block}
+.hero .bridge .arrow::before,.hero .bridge .arrow::after{content:"";position:absolute;top:50%;width:14px;height:1px;background:rgba(242,182,50,.55)}
+.hero .bridge .arrow::before{right:calc(100% + 4px)}.hero .bridge .arrow::after{left:calc(100% + 4px)}
+.hero .bridge .arrow:hover{background:radial-gradient(circle at 34% 28%,rgba(242,182,50,.55),rgba(242,182,50,.18) 60%,rgba(13,14,18,.2) 100%);box-shadow:0 0 0 9px rgba(242,182,50,.1),inset 0 -6px 12px rgba(0,0,0,.3)}
+@media (max-width:760px){.hero .bridge .arrow{width:42px;height:42px}.hero .bridge .arrow svg{width:20px;height:20px}.hero .bridge .arrow::before,.hero .bridge .arrow::after{width:8px}}
+/* contatti con la seconda foto e filtro blu */
+.contact{position:relative;isolation:isolate;overflow:hidden;background:#0f1f42;padding-block:96px}
+.contact-bg{position:absolute;inset:0;z-index:-1}
+.contact-bg img{position:absolute;right:0;top:0;height:100%;width:auto;max-width:none;filter:grayscale(1) contrast(1.05);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 45%);mask-image:linear-gradient(90deg,transparent 0,#000 45%)}
+.contact-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,31,66,.97) 0%,rgba(31,61,122,.88) 42%,rgba(31,61,122,.55) 75%,rgba(31,61,122,.45) 100%);mix-blend-mode:normal}
+.contact .wrap{position:relative}
+.contact .grid b span{font-size:inherit;letter-spacing:0;text-transform:none;opacity:1}
+@media (min-width:761px){.contact{min-height:620px;display:flex;align-items:center}.contact>.wrap{width:100%}}
+.contact h2{text-shadow:0 2px 20px rgba(0,0,0,.35)}
+@media (max-width:760px){
+  .contact{padding-block:300px 64px}
+  .contact-bg img{left:0;right:auto;width:100%;height:auto;-webkit-mask-image:linear-gradient(180deg,#000 45%,transparent 92%);mask-image:linear-gradient(180deg,#000 45%,transparent 92%)}
+  .contact-bg::after{background:linear-gradient(180deg,rgba(31,61,122,.45) 0%,rgba(31,61,122,.6) 35%,rgba(15,31,66,.95) 70%,#0f1f42 100%)}
+}
 </style>
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -452,10 +476,10 @@ body.menu-open .c-motto{opacity:1;transition-delay:.8s}
         <a class="btn solid" href="#partner"><span lang="it">Collabora con noi</span><span lang="en">Work with us</span></a>
         <a class="btn" href="#repertorio"><span lang="it">Scopri il repertorio</span><span lang="en">Explore the repertoire</span></a>
       </div>
-      <div class="bridge" aria-hidden="true">
-        <div>Napoli<small><span lang="it">Eduardo, Scarpetta, Viviani</span><span lang="en">Eduardo, Scarpetta, Viviani</span></small></div>
-        <div class="arrow">⇄</div>
-        <div>Europa<small><span lang="it">Molière, Shakespeare, Čechov</span><span lang="en">Molière, Shakespeare, Chekhov</span></small></div>
+      <div class="bridge">
+        <div class="pole">Napoli<small><span lang="it">Eduardo, Scarpetta, Viviani</span><span lang="en">Eduardo, Scarpetta, Viviani</span></small></div>
+        <button class="arrow" type="button" id="swap" aria-label="Inverti Napoli ed Europa / Swap Naples and Europe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h13M15 6l3 3-3 3M19 15H6M9 12l-3 3 3 3"/></svg></button>
+        <div class="pole">Europa<small><span lang="it">Molière, Shakespeare, Čechov</span><span lang="en">Molière, Shakespeare, Chekhov</span></small></div>
       </div>
     </div></div>
     <a class="cue" href="#storia"><span lang="it">La nostra storia</span><span lang="en">Our story</span></a>
@@ -668,6 +692,7 @@ body.menu-open .c-motto{opacity:1;transition-delay:.8s}
   </section>
 
   <section id="contatti" class="contact">
+    <div class="contact-bg" aria-hidden="true"><img src="pulcinella-2.jpg" alt="" loading="lazy"></div>
     <div class="wrap">
       <p class="eyebrow"><span lang="it">Contatti</span><span lang="en">Contact</span></p>
       <h2><span lang="it">Portiamo il teatro napoletano nel vostro centro.</span><span lang="en">Let's bring Neapolitan theatre to your venue.</span></h2>
@@ -743,6 +768,21 @@ body.menu-open .c-motto{opacity:1;transition-delay:.8s}
   document.addEventListener('keydown',function(e){if(e.key==='Escape')setOpen(false)});
   function onScroll(){var over=window.scrollY<hero.offsetHeight-70;hdr.classList.toggle('over',over)}
   window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
+
+  var sw=document.getElementById('swap'),turns=0;
+  if(sw){sw.addEventListener('click',function(){
+    var br=sw.parentNode,poles=br.querySelectorAll('.pole'),a=poles[0],b=poles[1];
+    var first=[a.getBoundingClientRect(),b.getBoundingClientRect()];
+    br.insertBefore(b,sw);br.appendChild(a);
+    turns++;sw.style.transform='rotate('+(turns*180)+'deg)';
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    [[a,first[0]],[b,first[1]]].forEach(function(p){
+      var el=p[0],r=el.getBoundingClientRect();
+      el.style.transition='none';el.style.transform='translateX('+(p[1].left-r.left)+'px)';
+      el.getBoundingClientRect();
+      el.style.transition='transform .7s cubic-bezier(.65,0,.25,1)';el.style.transform='';
+    });
+  });}
   if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=(i%9*0.04)+'s';io.observe(el)})}else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in')})}
   function set(l){
     root.lang=l;
