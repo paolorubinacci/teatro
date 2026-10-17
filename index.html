@@ -17,7 +17,7 @@
   --ink:#16192a;
   --muted:#545a6e;
   --blue:#1f3d7a;
-  --yellow:#1f3d7a;
+  --yellow:#f2b632;
   --line:#cfd0c8;
   --on-blue:#f7f6f1;
   --display:"Bodoni Moda","Didot","Times New Roman",serif;
@@ -25,10 +25,10 @@
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --paper:#12141e;--paper-2:#1b1e2c;--ink:#ecebe3;--muted:#a6abbd;
-  --blue:#8fa9e6;--yellow:#8fa9e6;--line:#2e3244;--on-blue:#12141e;color-scheme:dark}}
+  --blue:#8fa9e6;--yellow:#f2b632;--line:#2e3244;--on-blue:#12141e;color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#12141e;--paper-2:#1b1e2c;--ink:#ecebe3;--muted:#a6abbd;
-  --blue:#8fa9e6;--yellow:#8fa9e6;--line:#2e3244;--on-blue:#12141e;color-scheme:dark}
+  --blue:#8fa9e6;--yellow:#f2b632;--line:#2e3244;--on-blue:#12141e;color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -126,14 +126,11 @@ dialog.work::backdrop{background:rgba(10,12,20,.6)}
 
 
 /* hero con foto */
-.hero{position:relative;background:#0d0e12 url("pulcinella.jpg") right center/auto 100% no-repeat;color:#f2f1ec;border-bottom:0;padding-block:clamp(36px,9vh,96px) clamp(32px,8vh,80px);isolation:isolate}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#0d0e12 0%,#0d0e12 56%,rgba(13,14,18,.7) 66%,rgba(13,14,18,.1) 88%,rgba(13,14,18,0) 100%)}
 .hero .eyebrow,.hero .lede,.hero .bridge small{color:#c3c5ce}
 .hero h1 em{color:#9db3ea}
 .hero .btn{border-color:#f2f1ec;color:#f2f1ec}
 .hero .btn.solid{background:#f2f1ec;border-color:#f2f1ec;color:#0d0e12}
 .hero .bridge .arrow{color:#9db3ea}
-@media (max-width:760px){.hero{background-size:cover;background-position:62% top;padding-block:72px 56px}.hero::before{background:linear-gradient(180deg,rgba(13,14,18,.25) 0%,rgba(13,14,18,.55) 30%,rgba(13,14,18,.88) 60%,#0d0e12 100%)}}
 /* motto */
 .motto{padding-block:64px;background:var(--paper-2);border-bottom:1px solid var(--line);text-align:center}
 .motto p{font-family:var(--display);font-style:italic;font-size:clamp(2.4rem,8vw,5.2rem);line-height:1;color:var(--blue)}
@@ -151,19 +148,17 @@ dialog.work::backdrop{background:rgba(10,12,20,.6)}
 .hero .bridge{margin-top:28px;max-width:560px}
 @media (max-height:620px) and (orientation:landscape){.hero{padding-block:24px}.hero h1{font-size:clamp(1.8rem,4vw,2.6rem)}.hero .lede{font-size:.95rem;margin-top:10px}.hero .cta{margin-top:14px}.hero .bridge{display:none}}
 /* alternanza sezioni: nero / bianco, accenti blu e giallo */
-.dark{--paper:#0d0e12;--paper-2:#15171e;--ink:#f2f1ec;--muted:#a9acb8;--line:#2a2d38;--blue:#9db3ea;--yellow:#9db3ea;--on-blue:#0d0e12;background:var(--paper);color:var(--ink);color-scheme:dark}
+.dark{--paper:#0d0e12;--paper-2:#15171e;--ink:#f2f1ec;--muted:#a9acb8;--line:#2a2d38;--blue:#9db3ea;--yellow:#f2b632;--on-blue:#0d0e12;background:var(--paper);color:var(--ink);color-scheme:dark}
 .dark .eyebrow{color:var(--muted)}
 .motto{background:#0d0e12;border-bottom:0}
 .motto p{color:#f2f1ec}.motto p em{color:#9db3ea;font-style:italic}
 .poster.p1{background:#1f3d7a;color:#f2f1ec}
-.poster.p3{background:#1b1e27;color:#f2f1ec}
+.poster.p3{background:#f2b632;color:#16192a}
 .work-actions{display:grid;gap:8px}
 .buy.amz{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 .buy.amz:hover{background:var(--blue);border-color:var(--blue);color:var(--on-blue)}
 
 
-.hero.dark{background:#0d0e12 url("pulcinella.jpg") right center/auto 100% no-repeat}
-@media (max-width:760px){.hero.dark{background-size:cover;background-position:62% top}}
 
 /* repertorio: elenco a locandina */
 .rep{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px}
@@ -209,18 +204,71 @@ dialog.work::backdrop{background:rgba(10,12,20,.6)}
 @media (max-width:760px){.contact .grid{grid-template-columns:1fr}}
 footer{padding-block:28px;font-size:.82rem;color:var(--muted)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+/* ===== aggiornamento 17/10: home a tutto schermo, storia, giallo ===== */
+section,.motto{scroll-margin-top:64px}
+/* header trasparente sopra la foto, carta quando si scorre */
+header.top{position:fixed;left:0;right:0;top:0;transition:background .3s,border-color .3s}
+header.top.over{--ink:#f2f1ec;--paper:#0d0e12;--blue:#9db3ea;background:linear-gradient(180deg,rgba(13,14,18,.7),rgba(13,14,18,0));border-bottom-color:transparent}
+header.top.over .brand i{color:var(--yellow)}
+/* hero */
+.hero{position:relative;overflow:hidden;isolation:isolate;min-height:100vh;min-height:100svh;display:flex;align-items:center;background:#0d0e12;color:#f2f1ec;border-bottom:0;padding-block:96px 88px}
+.hero>.wrap{width:100%}
+.hero-in{max-width:600px}
+.hero-bg{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.hero-bg img{position:absolute;display:block;max-width:none}
+.hero-bg .blur{left:-60px;top:-60px;width:calc(100% + 120px);height:calc(100% + 120px);object-fit:cover;object-position:72% 28%;filter:blur(26px) brightness(.5) contrast(1.05)}
+.hero-bg .sharp{right:0;top:0;height:100%;width:auto;-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.35) 18%,#000 46%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.35) 18%,#000 46%)}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,14,18,.9) 0%,rgba(13,14,18,.72) 34%,rgba(13,14,18,.2) 62%,rgba(13,14,18,0) 82%),linear-gradient(0deg,rgba(13,14,18,.55),rgba(13,14,18,0) 30%)}
+.hero h1{text-shadow:0 2px 24px rgba(0,0,0,.45)}
+.hero .eyebrow{color:#d6d7de;display:flex;align-items:center;gap:12px}
+.hero .eyebrow::before{content:"";width:28px;height:2px;background:var(--yellow);flex:none}
+.hero .lede{color:#d6d7de}
+.hero h1 em{color:#9db3ea}
+.hero .bridge .arrow{color:var(--yellow)}
+.hero .btn.solid{background:#f2f1ec;border-color:#f2f1ec;color:#0d0e12}
+.hero .btn.solid:hover{background:var(--yellow);border-color:var(--yellow)}
+.hero .btn{border-color:#f2f1ec;color:#f2f1ec}
+.cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);color:#d6d7de;text-decoration:none;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
+.cue::after{content:"";width:1px;height:34px;background:linear-gradient(var(--yellow),transparent)}
+@media (prefers-reduced-motion:no-preference){.cue::after{animation:cue 2.2s ease-in-out infinite}@keyframes cue{50%{transform:translateY(6px);opacity:.5}}}
+@media (max-width:760px){
+  .hero{align-items:flex-end;padding-block:88px 84px}
+  .hero-bg .sharp{left:0;right:auto;top:0;width:100%;height:auto;-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 98%);mask-image:linear-gradient(180deg,#000 55%,transparent 98%)}
+  .cue{display:none}
+  .hero-bg::after{background:linear-gradient(180deg,rgba(13,14,18,.35) 0%,rgba(13,14,18,0) 18%,rgba(13,14,18,.15) 40%,rgba(13,14,18,.8) 62%,rgba(13,14,18,.94) 100%)}
+}
+@media (max-height:620px) and (orientation:landscape){.cue{display:none}}
+/* la nostra storia */
+.story .questions{margin:34px 0 34px 252px;padding-left:24px;border-left:3px solid var(--yellow);display:grid;gap:16px;max-width:30em}
+.story .questions p{font-family:var(--display);font-style:italic;font-size:clamp(1.3rem,2.6vw,1.85rem);line-height:1.25}
+.story .since{list-style:none;margin:10px 0 0 252px;padding:0;max-width:65ch}
+.story .since li{padding:11px 0;border-bottom:1px dotted var(--line);font-size:1.04rem}
+.story .since li b{font-weight:600;color:var(--blue)}
+.story .answer{margin:44px 0 0 252px;font-family:var(--display);font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.2}
+.story .answer strong{display:inline-block;margin-top:12px;font-weight:500;font-size:clamp(3.6rem,11vw,7.5rem);line-height:1;color:var(--blue);background:linear-gradient(transparent 68%,var(--yellow) 68%,var(--yellow) 86%,transparent 86%);padding:0 .08em}
+@media (max-width:760px){.story .questions,.story .since,.story .answer{margin-left:0}}
+.reveal{transition:opacity .6s ease,transform .6s ease}
+.js .reveal:not(.in){opacity:0;transform:translateY(12px)}
+@media (prefers-reduced-motion:reduce){.js .reveal:not(.in){opacity:1;transform:none}}
+/* motto e contatti con il giallo */
+.motto{padding-block:72px}
+.motto p::before{content:"";display:block;width:40px;height:3px;background:var(--yellow);margin:0 auto 26px}
+.contact{background:#1f3d7a;color:#f2f1ec}
+.contact .eyebrow{color:var(--yellow);opacity:1}
+.contact .grid div{border-top-color:var(--yellow)}
 </style>
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
 
 
-<header class="top">
+<header class="top over">
   <div class="wrap">
     <a class="brand" href="#top">Ponti <i>di</i> Scena</a>
     <nav aria-label="Menu">
       <ul>
-        <li><a href="#chi-siamo"><span lang="it">Chi siamo</span><span lang="en">About</span></a></li>
+        <li><a href="#storia"><span lang="it">La nostra storia</span><span lang="en">Our story</span></a></li>
         <li><a href="#missione"><span lang="it">Missione</span><span lang="en">Mission</span></a></li>
         <li><a href="#attivita"><span lang="it">Attività</span><span lang="en">Activities</span></a></li>
         <li><a href="#opere"><span lang="it">Opere</span><span lang="en">Productions</span></a></li>
@@ -237,8 +285,9 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 </header>
 
 <main id="top">
-  <div class="hero dark">
-    <div class="wrap">
+  <div class="hero dark" id="hero">
+    <div class="hero-bg" aria-hidden="true"><img class="blur" src="pulcinella.jpg" alt=""><img class="sharp" src="pulcinella.jpg" alt=""></div>
+    <div class="wrap"><div class="hero-in">
       <p class="eyebrow"><span lang="it">Associazione culturale · Napoli – Europa</span><span lang="en">Cultural association · Naples – Europe</span></p>
       <h1>
         <span lang="it">Il teatro napoletano parla <em>tutte le lingue</em> d'Europa.</span>
@@ -257,23 +306,49 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         <div class="arrow">⇄</div>
         <div>Europa<small><span lang="it">Molière, Shakespeare, Čechov</span><span lang="en">Molière, Shakespeare, Chekhov</span></small></div>
       </div>
-    </div>
+    </div></div>
+    <a class="cue" href="#storia"><span lang="it">La nostra storia</span><span lang="en">Our story</span></a>
   </div>
 
-  <section id="chi-siamo">
+  <section id="storia" class="story">
     <div class="wrap">
       <div class="sec-head">
-        <p class="eyebrow"><span lang="it">Chi siamo</span><span lang="en">About us</span></p>
-        <h2><span lang="it">Tre napoletani in Europa, una lingua teatrale da condividere.</span><span lang="en">Three Neapolitans in Europe, one theatrical language to share.</span></h2>
+        <p class="eyebrow"><span lang="it">La nostra storia</span><span lang="en">Our story</span></p>
+        <h2><span lang="it">È nato tutto per scherzo.</span><span lang="en">It all started as a joke.</span></h2>
       </div>
       <div class="body">
-        <p lang="it">Ponti di Scena è un'associazione culturale fondata da tre artisti di origine napoletana che vivono e lavorano all'estero. Il napoletano è una delle grandi lingue del teatro europeo: da Scarpetta a Eduardo De Filippo, ha prodotto un repertorio che racconta l'umanità con un'ironia e una profondità riconoscibili ovunque.</p>
-        <p lang="en">Ponti di Scena is a cultural association founded by three artists of Neapolitan origin who live and work abroad. Neapolitan is one of the great languages of European theatre: from Scarpetta to Eduardo De Filippo, it has produced a repertoire that portrays humanity with irony and depth recognised everywhere.</p>
-        <p lang="it">Vogliamo far conoscere questo patrimonio al pubblico europeo nella sua lingua, e allo stesso tempo mettere il napoletano alla prova dei grandi testi delle altre tradizioni.</p>
-        <p lang="en">We want to bring this heritage to European audiences in their own languages, and at the same time test Neapolitan against the great texts of other traditions.</p>
+        <p lang="it">Eravamo tre napoletani lontani da casa. Di città in città avevamo imparato lingue nuove, conosciuto altre culture, visto teatro in lingue che capivamo a metà e riso di battute che non sapevamo tradurre. Ma ogni volta che tornavamo seduti allo stesso tavolo, finivamo a parlare di Napoli.</p>
+        <p lang="en">We were three Neapolitans far from home. City after city we had learned new languages, met other cultures, watched theatre in languages we only half understood and laughed at jokes we couldn't translate. Yet every time we sat down at the same table again, we ended up talking about Naples.</p>
+        <p lang="it">Una sera, tra un bicchiere e l'altro, qualcuno ha fatto la domanda.</p>
+        <p lang="en">One evening, between one glass and the next, someone asked the question.</p>
       </div>
+      <div class="questions">
+        <p class="reveal"><span lang="it">Come suonerebbe Bertolt Brecht, se fosse nato a Forcella?</span><span lang="en">What would Bertolt Brecht sound like, had he been born in Forcella?</span></p>
+        <p class="reveal"><span lang="it">E Molière, se fosse cresciuto a Porta Capuana?</span><span lang="en">And Molière, had he grown up by Porta Capuana?</span></p>
+        <p class="reveal"><span lang="it">E che dire del Sogno di una notte di mezza estate, se fosse stato concepito a Caivano?</span><span lang="en">And what about A Midsummer Night's Dream, had it been conceived in Caivano?</span></p>
+      </div>
+      <div class="body">
+        <p lang="it">Quella sera non siamo riusciti a rispondere. Ma oggi,</p>
+        <p lang="en">That night, we couldn't find the answer. But today,</p>
+      </div>
+      <ul class="since">
+        <li class="reveal"><span lang="it">dopo oltre <b>15 webinar</b> di successo,</span><span lang="en">after more than <b>15 successful webinars</b>,</span></li>
+        <li class="reveal"><span lang="it">dopo oltre <b>30 seminari</b> con centri e istituti di cultura,</span><span lang="en">after more than <b>30 seminars</b> with cultural centres and institutes,</span></li>
+        <li class="reveal"><span lang="it">dopo letture sceniche a <b>Parigi, Londra, Marrakech e Lugano</b>,</span><span lang="en">after staged readings in <b>Paris, London, Marrakech and Lugano</b>,</span></li>
+        <li class="reveal"><span lang="it">dopo <b>tre commedie di Eduardo</b> riscritte in inglese,</span><span lang="en">after <b>three Eduardo comedies</b> rewritten in English,</span></li>
+        <li class="reveal"><span lang="it">dopo <b>Molière e Shakespeare</b> messi alla prova del napoletano,</span><span lang="en">after putting <b>Molière and Shakespeare</b> to the test of Neapolitan,</span></li>
+        <li class="reveal"><span lang="it">dopo laboratori di napoletano per attori che non l'avevano mai sentito parlare,</span><span lang="en">after Neapolitan workshops for actors who had never heard it spoken,</span></li>
+        <li class="reveal"><span lang="it">dopo incontri in scuole e università di <b>quattro paesi</b>,</span><span lang="en">after talks in schools and universities across <b>four countries</b>,</span></li>
+        <li class="reveal"><span lang="it">dopo serate di musica napoletana dal vivo a sipario chiuso,</span><span lang="en">after evenings of live Neapolitan music once the curtain fell,</span></li>
+        <li class="reveal"><span lang="it">dopo notti intere a discutere se «ammore» si traduce <i>amour</i>, <i>love</i> o <i>amor</i>,</span><span lang="en">after whole nights arguing whether «ammore» translates as <i>amour</i>, <i>love</i> or <i>amor</i>,</span></li>
+      </ul>
+      <p class="answer reveal"><span lang="it">abbiamo finalmente la risposta:<br><strong>il teatro.</strong></span><span lang="en">we finally have the answer:<br><strong>theatre.</strong></span></p>
     </div>
   </section>
+
+  <div class="motto" role="note">
+    <div class="wrap"><p>Il teatro <em>è vita!</em></p></div>
+  </div>
 
   <section id="missione">
     <div class="wrap">
@@ -297,10 +372,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       </div>
     </div>
   </section>
-
-  <div class="motto" role="note">
-    <div class="wrap"><p>Il teatro <em>è vita!</em></p></div>
-  </div>
 
   <section id="attivita">
     <div class="wrap">
@@ -504,6 +575,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 <script>
 (function(){
   var root=document.documentElement;
+  root.classList.add('js');
+  var hdr=document.querySelector('header.top'),hero=document.getElementById('hero');
+  function onScroll(){hdr.classList.toggle('over',window.scrollY<hero.offsetHeight-70)}
+  window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=(i%9*0.04)+'s';io.observe(el)})}else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in')})}
   function set(l){
     root.lang=l;
     document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===l?'true':'false')});
