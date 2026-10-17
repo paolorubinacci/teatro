@@ -209,7 +209,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 section,.motto{scroll-margin-top:64px}
 /* header trasparente sopra la foto, carta quando si scorre */
 header.top{position:fixed;left:0;right:0;top:0;transition:background .3s,border-color .3s}
-header.top.over{--ink:#f2f1ec;--paper:#0d0e12;--blue:#9db3ea;background:linear-gradient(180deg,rgba(13,14,18,.7),rgba(13,14,18,0));border-bottom-color:transparent}
 header.top.over .brand i{color:var(--yellow)}
 /* hero */
 .hero{position:relative;overflow:hidden;isolation:isolate;min-height:100vh;min-height:100svh;display:flex;align-items:center;background:#0d0e12;color:#f2f1ec;border-bottom:0;padding-block:96px 88px}
@@ -257,6 +256,139 @@ header.top.over .brand i{color:var(--yellow)}
 .contact{background:#1f3d7a;color:#f2f1ec}
 .contact .eyebrow{color:var(--yellow);opacity:1}
 .contact .grid div{border-top-color:var(--yellow)}
+
+/* ===== aggiornamento 17/10 (2): vetro, hamburger, attività, biglietti ===== */
+:root{--glass:rgba(247,246,241,.72)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--glass:rgba(18,20,30,.72)}}
+:root[data-theme="dark"]{--glass:rgba(18,20,30,.72)}
+header.top{top:0;padding-top:env(safe-area-inset-top,0px);background:var(--glass);-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid rgba(127,127,127,.2)}
+header.top.over{--ink:#f2f1ec;--paper:#0d0e12;--blue:#9db3ea;--glass:rgba(13,14,18,.3);border-bottom-color:rgba(255,255,255,.12)}
+.top .wrap{transition:padding .25s}
+header.top:not(.over) .wrap{padding-block:8px}
+.right{display:flex;align-items:center;gap:10px}
+/* ponte allineato a sinistra */
+/* locandine: titoli lunghi su telefono */
+.poster .ti{font-size:clamp(1.55rem,6.4vw,2.1rem);overflow-wrap:break-word}
+@media (max-width:640px){.works{grid-auto-columns:78%}}
+/* hero su telefono: foto in alto, testo compatto in basso */
+@media (max-width:760px){
+  .hero{padding-block:84px 30px}
+  .hero-bg .sharp{left:0;top:0;width:100%;height:66%;object-fit:cover;object-position:64% 30%;-webkit-mask-image:linear-gradient(180deg,#000 60%,transparent 100%);mask-image:linear-gradient(180deg,#000 60%,transparent 100%)}
+  .hero-bg::after{background:linear-gradient(180deg,rgba(13,14,18,.35) 0%,rgba(13,14,18,0) 16%,rgba(13,14,18,0) 38%,rgba(13,14,18,.72) 56%,rgba(13,14,18,.9) 100%)}
+  .hero h1{font-size:clamp(2rem,9vw,2.5rem);max-width:none}
+  .hero .lede{font-size:.98rem;line-height:1.5;margin-top:12px}
+  .hero .cta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+  .hero .cta .btn{text-align:center;padding:12px 10px}
+}
+/* attività */
+.activities{background:var(--paper-2)}
+.activities .acts{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;background:none;border:0}
+.activities .act{background:var(--paper);padding:28px 24px 30px;gap:12px;border-top:3px solid var(--blue);box-shadow:0 1px 0 var(--line);transition:transform .25s}
+.activities .act:hover{transform:translateY(-3px)}
+.act .ic{width:56px;height:56px;border-radius:50%;background:var(--blue);display:grid;place-items:center}
+.act .ic svg{width:34px;height:34px;fill:none;stroke:var(--yellow);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.activities .act h3{font-size:1.32rem}
+@media (max-width:980px){.activities .acts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.activities .acts{grid-template-columns:1fr}}
+.acts-cta{margin-top:36px;display:flex;justify-content:center}
+.btn.consult{display:inline-flex;align-items:center;gap:14px;background:var(--blue);border-color:var(--blue);color:var(--on-blue);padding:15px 28px;font-size:.95rem}
+.btn.consult .arr{color:var(--yellow);font-size:1.15rem;transition:transform .25s}
+.btn.consult:hover{border-color:var(--yellow)}
+.btn.consult:hover .arr{transform:translateX(4px)}
+/* storia: cascata */
+.story .since{border-left:2px solid var(--line);padding-left:26px;margin-top:18px;display:grid;gap:4px}
+.story .since li{position:relative;border-bottom:0;padding:9px 0;font-family:var(--display);font-size:clamp(1.15rem,2.1vw,1.45rem);line-height:1.3}
+.story .since li::before{content:"";position:absolute;left:-33px;top:1.05em;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--yellow)}
+.story .since li.in::before{background:var(--yellow);transition:background .4s .3s}
+.story .since li b{font-family:var(--body);font-weight:600;font-size:.82em;color:var(--blue);letter-spacing:.01em}
+.story .since li.last{font-style:italic;margin-top:8px}
+.story .answer{margin-top:52px}
+/* formati: biglietti */
+.tickets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.ticket{position:relative;background:var(--paper);border:1px solid var(--line);display:grid;grid-template-rows:auto auto 1fr;min-width:0}
+.t-dur{position:relative}
+.t-dur::before,.t-dur::after{content:"";position:absolute;bottom:-10px;width:18px;height:18px;border-radius:50%;background:var(--paper-2);border:1px solid var(--line)}
+.t-dur::before{left:-10px;clip-path:inset(0 0 0 50%)}.t-dur::after{right:-10px;clip-path:inset(0 50% 0 0)}
+.t-head{padding:20px 20px 0;min-height:96px;display:grid;gap:6px;align-content:start}
+.t-k{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--blue)}
+.t-head h3{font-size:1.3rem}
+.t-dur{padding:14px 20px 16px;border-bottom:1px dashed var(--line);font-size:.85rem;color:var(--muted);margin-top:4px}
+.t-dur b{font-family:var(--display);font-weight:500;font-size:2.3rem;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
+.t-meta{margin:0;padding:16px 20px 20px;display:grid;gap:12px;font-size:.9rem}
+.t-meta dt{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.t-meta dd{margin:2px 0 0}
+@media (max-width:980px){.tickets{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.tickets{grid-template-columns:1fr}.t-head{min-height:0}}
+
+/* ===== aggiornamento 17/10 (3): menu che si chiude a sipario, ponte ===== */
+header.top .wrap{flex-wrap:wrap;row-gap:0}
+header.top nav{transition:max-height .5s ease,opacity .4s ease;max-height:60px;overflow:hidden}
+header.top nav li{transition:opacity .35s ease,transform .35s ease;transition-delay:calc(var(--i,0)*45ms)}
+header.top:not(.over) nav{max-height:0;opacity:0;pointer-events:none}
+header.top:not(.over) nav li{opacity:0;transform:translateY(-12px);transition-delay:calc((8 - var(--i,0))*35ms)}
+@media (max-width:1100px) and (min-width:700px){
+  header.top nav{order:3;flex-basis:100%}
+  header.top nav ul{justify-content:center;gap:18px;padding:6px 0 4px;flex-wrap:wrap}
+  header.top nav a{font-size:.82rem}
+}
+@media (max-width:699px){header.top nav{display:none}}
+/* bottone menu */
+.burger{display:inline-flex;align-items:center;gap:10px;height:34px;padding:0 12px;background:none;border:1px solid var(--ink);color:var(--ink);border-radius:2px;cursor:pointer;font:600 .72rem var(--body);letter-spacing:.16em;text-transform:uppercase;transition:opacity .4s ease .25s,transform .4s ease .25s,background .25s,color .25s}
+.burger .bl{display:grid;gap:4px;width:18px}
+.burger .bl i{display:block;height:1.5px;background:currentColor;transition:transform .35s ease,width .35s ease}
+.burger .bl i:last-child{width:12px}
+.burger:hover{background:var(--ink);color:var(--paper)}
+.burger .t-close{display:none}
+header.top.open .burger .t-open{display:none}
+header.top.open .burger .t-close:lang(it){display:inline}
+:root[lang="it"] header.top.open .burger .t-close[lang="it"],:root[lang="en"] header.top.open .burger .t-close[lang="en"]{display:inline}
+:root[lang="it"] header.top.open .burger .t-close[lang="en"],:root[lang="en"] header.top.open .burger .t-close[lang="it"]{display:none}
+header.top.open .burger .bl i:first-child{transform:translateY(2.75px) rotate(45deg)}
+header.top.open .burger .bl i:last-child{width:18px;transform:translateY(-2.75px) rotate(-45deg)}
+@media (min-width:700px){header.top.over:not(.open) .burger{opacity:0;transform:translateX(10px);pointer-events:none;transition-delay:0s}}
+/* sipario a tutto schermo */
+header.top.open{--ink:#f2f1ec;--paper:#0d0e12;--blue:#9db3ea;--glass:rgba(13,14,18,0);border-bottom-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
+header.top.open .brand i{color:var(--yellow)}
+.curtain{position:fixed;inset:0;z-index:9;background:radial-gradient(120% 80% at 80% 0%,#1f3d7a 0%,#0d0e12 62%);color:#f2f1ec;display:flex;align-items:center;clip-path:inset(0 0 100% 0);transition:clip-path .65s cubic-bezier(.7,0,.2,1);overflow-y:auto}
+body.menu-open .curtain{clip-path:inset(0 0 0 0)}
+body.menu-open{overflow:hidden}
+.c-in{width:100%;max-width:1080px;margin:0 auto;padding:110px max(16px,env(safe-area-inset-right,0px)) 48px max(24px,env(safe-area-inset-left,0px));display:grid;gap:18px}
+.c-k{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:#c3c5ce;display:flex;align-items:center;gap:12px}
+.c-k::before{content:"";width:28px;height:2px;background:var(--yellow)}
+.curtain ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.curtain li{opacity:0;transform:translateY(18px);transition:opacity .45s ease,transform .45s ease;transition-delay:0s}
+body.menu-open .curtain li{opacity:1;transform:none;transition-delay:calc(.25s + var(--i)*.06s)}
+.curtain a{font-family:var(--display);font-size:clamp(2rem,6vw,3.6rem);line-height:1.15;color:#f2f1ec;text-decoration:none;display:inline-block;padding:4px 0;transition:color .2s,transform .25s}
+.curtain a:hover,.curtain a:focus-visible{color:var(--yellow);font-style:italic;transform:translateX(8px)}
+.c-motto{margin-top:22px;font-family:var(--display);font-style:italic;font-size:1.3rem;color:#c3c5ce;opacity:0;transition:opacity .5s ease}
+.c-motto em{color:#9db3ea}
+body.menu-open .c-motto{opacity:1;transition-delay:.8s}
+@media (prefers-reduced-motion:reduce){.curtain{transition:none}.curtain li,.c-motto,header.top nav,header.top nav li,.burger{transition:none}}
+/* ponte Napoli ⇄ Europa */
+.hero .bridge{display:flex;align-items:center;gap:18px;max-width:none;margin-top:30px;padding-top:20px;border-top:1px solid rgba(242,241,236,.18);width:max-content;max-width:100%}
+.hero .bridge>div{font-family:var(--display);font-size:1.3rem;text-align:left}
+.hero .bridge>div:last-child{text-align:left}
+.hero .bridge small{font-size:.76rem;margin-top:3px;letter-spacing:.02em}
+.hero .bridge .arrow{flex:none;width:44px;height:44px;border:1px solid var(--yellow);border-radius:50%;display:grid;place-items:center;font-size:1.25rem;color:var(--yellow)}
+@media (max-width:760px){
+  .hero .bridge{margin-top:18px;padding-top:14px;gap:12px;width:100%;justify-content:space-between}
+  .hero .bridge>div{font-size:1.05rem}
+  .hero .bridge>div:last-child{text-align:right}
+  .hero .bridge small{font-size:.7rem}
+  .hero .bridge .arrow{width:34px;height:34px;font-size:1rem}
+  .hero-bg .sharp{height:60%}
+  .hero .lede{font-size:.94rem}
+}
+
+/* tablet: menu completo visibile in cima; hero in verticale */
+@media (min-width:700px){header.top nav{display:block}}
+@media (min-width:761px) and (max-width:1100px) and (orientation:portrait){
+  .hero{align-items:flex-end;padding-block:120px 70px}
+  .hero-bg .sharp{left:0;right:auto;top:0;width:100%;height:68%;object-fit:cover;object-position:64% 28%;-webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 100%);mask-image:linear-gradient(180deg,#000 62%,transparent 100%)}
+  .hero-bg::after{background:linear-gradient(180deg,rgba(13,14,18,.35) 0%,rgba(13,14,18,0) 18%,rgba(13,14,18,0) 42%,rgba(13,14,18,.75) 62%,rgba(13,14,18,.92) 100%)}
+  .hero-in{max-width:640px}
+  .cue{display:none}
+}
 </style>
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -266,23 +398,42 @@ header.top.over .brand i{color:var(--yellow)}
 <header class="top over">
   <div class="wrap">
     <a class="brand" href="#top">Ponti <i>di</i> Scena</a>
-    <nav aria-label="Menu">
+    <nav aria-label="Menu" id="menu">
       <ul>
-        <li><a href="#storia"><span lang="it">La nostra storia</span><span lang="en">Our story</span></a></li>
-        <li><a href="#missione"><span lang="it">Missione</span><span lang="en">Mission</span></a></li>
-        <li><a href="#attivita"><span lang="it">Attività</span><span lang="en">Activities</span></a></li>
-        <li><a href="#opere"><span lang="it">Opere</span><span lang="en">Productions</span></a></li>
-        <li><a href="#repertorio"><span lang="it">Repertorio</span><span lang="en">Repertoire</span></a></li>
-        <li><a href="#partner"><span lang="it">Per i centri culturali</span><span lang="en">For cultural centres</span></a></li>
-        <li><a href="#contatti"><span lang="it">Contatti</span><span lang="en">Contact</span></a></li>
+        <li style="--i:1"><a href="#storia"><span lang="it">La nostra storia</span><span lang="en">Our story</span></a></li>
+        <li style="--i:2"><a href="#missione"><span lang="it">Missione</span><span lang="en">Mission</span></a></li>
+        <li style="--i:3"><a href="#attivita"><span lang="it">Attività</span><span lang="en">Activities</span></a></li>
+        <li style="--i:4"><a href="#opere"><span lang="it">Opere</span><span lang="en">Productions</span></a></li>
+        <li style="--i:5"><a href="#repertorio"><span lang="it">Repertorio</span><span lang="en">Repertoire</span></a></li>
+        <li style="--i:6"><a href="#partner"><span lang="it">Per i centri culturali</span><span lang="en">For cultural centres</span></a></li>
+        <li style="--i:7"><a href="#contatti"><span lang="it">Contatti</span><span lang="en">Contact</span></a></li>
       </ul>
     </nav>
-    <div class="lang" role="group" aria-label="Lingua / Language">
-      <button id="btn-it" type="button" aria-pressed="true" data-l="it">IT</button>
-      <button id="btn-en" type="button" aria-pressed="false" data-l="en">EN</button>
+    <div class="right">
+      <div class="lang" role="group" aria-label="Lingua / Language">
+        <button id="btn-it" type="button" aria-pressed="true" data-l="it">IT</button>
+        <button id="btn-en" type="button" aria-pressed="false" data-l="en">EN</button>
+      </div>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="curtain"><span class="bl" aria-hidden="true"><i></i><i></i></span><span class="bt"><span class="t-open">Menu</span><span class="t-close" lang="it">Chiudi</span><span class="t-close" lang="en">Close</span></span></button>
     </div>
   </div>
 </header>
+
+<div class="curtain" id="curtain" aria-hidden="true">
+  <div class="c-in">
+    <p class="c-k"><span lang="it">Il programma</span><span lang="en">The programme</span></p>
+    <ul>
+      <li style="--i:1"><a href="#storia" tabindex="-1"><span lang="it">La nostra storia</span><span lang="en">Our story</span></a></li>
+      <li style="--i:2"><a href="#missione" tabindex="-1"><span lang="it">Missione</span><span lang="en">Mission</span></a></li>
+      <li style="--i:3"><a href="#attivita" tabindex="-1"><span lang="it">Attività</span><span lang="en">Activities</span></a></li>
+      <li style="--i:4"><a href="#opere" tabindex="-1"><span lang="it">Opere</span><span lang="en">Productions</span></a></li>
+      <li style="--i:5"><a href="#repertorio" tabindex="-1"><span lang="it">Repertorio</span><span lang="en">Repertoire</span></a></li>
+      <li style="--i:6"><a href="#partner" tabindex="-1"><span lang="it">Per i centri culturali</span><span lang="en">For cultural centres</span></a></li>
+      <li style="--i:7"><a href="#contatti" tabindex="-1"><span lang="it">Contatti</span><span lang="en">Contact</span></a></li>
+    </ul>
+    <p class="c-motto">Il teatro <em>è vita!</em></p>
+  </div>
+</div>
 
 <main id="top">
   <div class="hero dark" id="hero">
@@ -333,14 +484,11 @@ header.top.over .brand i{color:var(--yellow)}
       </div>
       <ul class="since">
         <li class="reveal"><span lang="it">dopo oltre <b>15 webinar</b> di successo,</span><span lang="en">after more than <b>15 successful webinars</b>,</span></li>
-        <li class="reveal"><span lang="it">dopo oltre <b>30 seminari</b> con centri e istituti di cultura,</span><span lang="en">after more than <b>30 seminars</b> with cultural centres and institutes,</span></li>
-        <li class="reveal"><span lang="it">dopo letture sceniche a <b>Parigi, Londra, Marrakech e Lugano</b>,</span><span lang="en">after staged readings in <b>Paris, London, Marrakech and Lugano</b>,</span></li>
-        <li class="reveal"><span lang="it">dopo <b>tre commedie di Eduardo</b> riscritte in inglese,</span><span lang="en">after <b>three Eduardo comedies</b> rewritten in English,</span></li>
-        <li class="reveal"><span lang="it">dopo <b>Molière e Shakespeare</b> messi alla prova del napoletano,</span><span lang="en">after putting <b>Molière and Shakespeare</b> to the test of Neapolitan,</span></li>
-        <li class="reveal"><span lang="it">dopo laboratori di napoletano per attori che non l'avevano mai sentito parlare,</span><span lang="en">after Neapolitan workshops for actors who had never heard it spoken,</span></li>
-        <li class="reveal"><span lang="it">dopo incontri in scuole e università di <b>quattro paesi</b>,</span><span lang="en">after talks in schools and universities across <b>four countries</b>,</span></li>
-        <li class="reveal"><span lang="it">dopo serate di musica napoletana dal vivo a sipario chiuso,</span><span lang="en">after evenings of live Neapolitan music once the curtain fell,</span></li>
-        <li class="reveal"><span lang="it">dopo notti intere a discutere se «ammore» si traduce <i>amour</i>, <i>love</i> o <i>amor</i>,</span><span lang="en">after whole nights arguing whether «ammore» translates as <i>amour</i>, <i>love</i> or <i>amor</i>,</span></li>
+        <li class="reveal"><span lang="it">oltre <b>30 seminari</b> con centri e istituti di cultura,</span><span lang="en">more than <b>30 seminars</b> with cultural centres and institutes,</span></li>
+        <li class="reveal"><span lang="it">letture sceniche a <b>Parigi, Londra, Monaco di Baviera e Lugano</b>,</span><span lang="en">staged readings in <b>Paris, London, Munich and Lugano</b>,</span></li>
+        <li class="reveal"><span lang="it"><b>tre commedie di Eduardo</b> riscritte in inglese,</span><span lang="en"><b>three Eduardo comedies</b> rewritten in English,</span></li>
+        <li class="reveal"><span lang="it">incontri in scuole e università di <b>quattro paesi</b>,</span><span lang="en">talks in schools and universities across <b>four countries</b>,</span></li>
+        <li class="reveal last"><span lang="it">e dopo notti intere a discutere se «ammore» si traduce <i>amour</i>, <i>love</i> o <i>amor</i>,</span><span lang="en">and after whole nights arguing whether «ammore» translates as <i>amour</i>, <i>love</i> or <i>amor</i>,</span></li>
       </ul>
       <p class="answer reveal"><span lang="it">abbiamo finalmente la risposta:<br><strong>il teatro.</strong></span><span lang="en">we finally have the answer:<br><strong>theatre.</strong></span></p>
     </div>
@@ -373,7 +521,7 @@ header.top.over .brand i{color:var(--yellow)}
     </div>
   </section>
 
-  <section id="attivita">
+  <section id="attivita" class="activities">
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow"><span lang="it">Attività</span><span lang="en">Activities</span></p>
@@ -381,26 +529,31 @@ header.top.over .brand i{color:var(--yellow)}
       </div>
       <div class="acts">
         <div class="act">
+          <span class="ic"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 14c-4-3-10-4-16-3v24c6-1 12 0 16 3 4-3 10-4 16-3V11c-6-1-12 0-16 3z"/><path d="M24 14v24"/><path d="M13 19h6M13 24h6M29 19h6M29 24h6"/></svg></span>
           <h3><span lang="it">Traduzione e adattamento</span><span lang="en">Translation and adaptation</span></h3>
           <p lang="it">Testi teatrali tradotti per la scena, con note sul contesto napoletano e sulla lingua.</p>
           <p lang="en">Stage-ready translations, with notes on the Neapolitan context and language.</p>
         </div>
         <div class="act">
+          <span class="ic"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 9h36"/><path d="M8 9c0 10 3 18 8 22M40 9c0 10-3 18-8 22"/><path d="M6 38h36"/><path d="M18 38v-5h12v5"/><circle cx="24" cy="25" r="3"/></svg></span>
           <h3><span lang="it">Letture sceniche e spettacoli</span><span lang="en">Staged readings and performances</span></h3>
           <p lang="it">Letture bilingui e messe in scena, anche con musica dal vivo della tradizione napoletana.</p>
           <p lang="en">Bilingual readings and productions, also with live music from the Neapolitan tradition.</p>
         </div>
         <div class="act">
+          <span class="ic"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 16c5-3 11-4 16-4s11 1 16 4c0 9-3 17-9 20-2 1-4-1-5-4l-2-5-2 5c-1 3-3 5-5 4-6-3-9-11-9-20z"/><path d="M15 22c2-1 4-1 6 0M27 22c2-1 4-1 6 0"/></svg></span>
           <h3><span lang="it">Laboratori</span><span lang="en">Workshops</span></h3>
           <p lang="it">Laboratori di recitazione e di lingua napoletana per attori, studenti e appassionati.</p>
           <p lang="en">Acting and Neapolitan-language workshops for actors, students and enthusiasts.</p>
         </div>
         <div class="act">
+          <span class="ic"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M4 30h40"/><path d="M8 30c4-10 10-15 16-15s12 5 16 15"/><path d="M14 30v-8M24 30V15M34 30v-8"/><path d="M10 37h28"/></svg></span>
           <h3><span lang="it">Incontri e scambi</span><span lang="en">Talks and exchanges</span></h3>
           <p lang="it">Conferenze, tavole rotonde e progetti condivisi con compagnie e teatri di altri paesi.</p>
           <p lang="en">Talks, round tables and joint projects with companies and theatres from other countries.</p>
         </div>
       </div>
+      <div class="acts-cta"><a class="btn consult" href="#contatti"><span lang="it">Prenota una consulenza</span><span lang="en">Book a consultation</span><span class="arr" aria-hidden="true">→</span></a></div>
     </div>
   </section>
 
@@ -413,7 +566,7 @@ header.top.over .brand i{color:var(--yellow)}
       <div class="works">
         <div class="work-item">
         <button class="poster p1" type="button" data-open="w1" id="card-w1">
-          <span class="yr">Eduardo De Filippo · 1946</span>
+          <span class="yr">Eduardo De Filippo · <span style="white-space:nowrap">1946 – ∞</span></span>
           <span><span class="ti">These Caspers</span><br><span class="og">Questi fantasmi!</span></span>
           <span class="more"><span lang="it">Scopri l'opera →</span><span lang="en">Discover the play →</span></span>
         </button>
@@ -424,7 +577,7 @@ header.top.over .brand i{color:var(--yellow)}
         </div>
         <div class="work-item">
         <button class="poster p2" type="button" data-open="w2" id="card-w2">
-          <span class="yr">Eduardo De Filippo · 1945</span>
+          <span class="yr">Eduardo De Filippo · <span style="white-space:nowrap">1945 – ∞</span></span>
           <span><span class="ti">Million Dollar City</span><br><span class="og">Napoli milionaria!</span></span>
           <span class="more"><span lang="it">Scopri l'opera →</span><span lang="en">Discover the play →</span></span>
         </button>
@@ -435,7 +588,7 @@ header.top.over .brand i{color:var(--yellow)}
         </div>
         <div class="work-item">
         <button class="poster p3" type="button" data-open="w3" id="card-w3">
-          <span class="yr">Eduardo De Filippo · 1940</span>
+          <span class="yr">Eduardo De Filippo · <span style="white-space:nowrap">1940 – ∞</span></span>
           <span><span class="ti">Authorization Denied</span><br><span class="og">Non ti pago</span></span>
           <span class="more"><span lang="it">Scopri l'opera →</span><span lang="en">Discover the play →</span></span>
         </button>
@@ -475,7 +628,6 @@ header.top.over .brand i{color:var(--yellow)}
           </ul>
         </div>
       </div>
-      <p class="note"><span lang="it">Titoli indicativi: il programma definitivo dipende dai diritti d'autore e dai progetti concordati con i partner.</span><span lang="en">Indicative titles: the final programme depends on rights clearance and on projects agreed with partners.</span></p>
     </div>
   </section>
 
@@ -485,21 +637,27 @@ header.top.over .brand i{color:var(--yellow)}
         <p class="eyebrow"><span lang="it">Per i centri culturali</span><span lang="en">For cultural centres</span></p>
         <h2><span lang="it">Formati pensati per istituti, teatri e festival.</span><span lang="en">Formats designed for institutes, theatres and festivals.</span></h2>
       </div>
-      <div class="tablebox">
-        <table class="formats">
-          <thead><tr>
-            <th><span lang="it">Formato</span><span lang="en">Format</span></th>
-            <th><span lang="it">Durata</span><span lang="en">Length</span></th>
-            <th><span lang="it">Lingue</span><span lang="en">Languages</span></th>
-            <th><span lang="it">Ideale per</span><span lang="en">Best for</span></th>
-          </tr></thead>
-          <tbody>
-            <tr><td><span lang="it">Lettura scenica bilingue</span><span lang="en">Bilingual staged reading</span></td><td>60–75 min</td><td><span lang="it">Napoletano + lingua locale</span><span lang="en">Neapolitan + local language</span></td><td><span lang="it">Istituti italiani di cultura, biblioteche</span><span lang="en">Italian cultural institutes, libraries</span></td></tr>
-            <tr><td><span lang="it">Spettacolo</span><span lang="en">Full performance</span></td><td>90–120 min</td><td><span lang="it">Lingua del pubblico, sovratitoli</span><span lang="en">Audience language, surtitles</span></td><td><span lang="it">Teatri, festival</span><span lang="en">Theatres, festivals</span></td></tr>
-            <tr><td><span lang="it">Laboratorio</span><span lang="en">Workshop</span></td><td><span lang="it">1–5 giorni</span><span lang="en">1–5 days</span></td><td><span lang="it">Su misura</span><span lang="en">Tailored</span></td><td><span lang="it">Scuole, università, compagnie</span><span lang="en">Schools, universities, companies</span></td></tr>
-            <tr><td><span lang="it">Incontro – conferenza</span><span lang="en">Talk – lecture</span></td><td>60 min</td><td><span lang="it">IT · EN · FR</span><span lang="en">IT · EN · FR</span></td><td><span lang="it">Centri culturali, associazioni</span><span lang="en">Cultural centres, associations</span></td></tr>
-          </tbody>
-        </table>
+      <div class="tickets">
+        <div class="ticket">
+          <div class="t-head"><span class="t-k"><span lang="it">Formato</span><span lang="en">Format</span></span><h3><span lang="it">Lettura scenica bilingue</span><span lang="en">Bilingual staged reading</span></h3></div>
+          <div class="t-dur"><b>60–75</b> <span lang="it">min</span><span lang="en">min</span></div>
+          <dl class="t-meta"><div><dt><span lang="it">Lingue</span><span lang="en">Languages</span></dt><dd><span lang="it">Napoletano + lingua locale</span><span lang="en">Neapolitan + local language</span></dd></div><div><dt><span lang="it">Ideale per</span><span lang="en">Best for</span></dt><dd><span lang="it">Istituti italiani di cultura, biblioteche</span><span lang="en">Italian cultural institutes, libraries</span></dd></div></dl>
+        </div>
+        <div class="ticket">
+          <div class="t-head"><span class="t-k"><span lang="it">Formato</span><span lang="en">Format</span></span><h3><span lang="it">Spettacolo</span><span lang="en">Full performance</span></h3></div>
+          <div class="t-dur"><b>90–120</b> <span lang="it">min</span><span lang="en">min</span></div>
+          <dl class="t-meta"><div><dt><span lang="it">Lingue</span><span lang="en">Languages</span></dt><dd><span lang="it">Lingua del pubblico, sovratitoli</span><span lang="en">Audience language, surtitles</span></dd></div><div><dt><span lang="it">Ideale per</span><span lang="en">Best for</span></dt><dd><span lang="it">Teatri, festival</span><span lang="en">Theatres, festivals</span></dd></div></dl>
+        </div>
+        <div class="ticket">
+          <div class="t-head"><span class="t-k"><span lang="it">Formato</span><span lang="en">Format</span></span><h3><span lang="it">Laboratorio</span><span lang="en">Workshop</span></h3></div>
+          <div class="t-dur"><b>1–5</b> <span lang="it">giorni</span><span lang="en">days</span></div>
+          <dl class="t-meta"><div><dt><span lang="it">Lingue</span><span lang="en">Languages</span></dt><dd><span lang="it">Su misura</span><span lang="en">Tailored</span></dd></div><div><dt><span lang="it">Ideale per</span><span lang="en">Best for</span></dt><dd><span lang="it">Scuole, università, compagnie</span><span lang="en">Schools, universities, companies</span></dd></div></dl>
+        </div>
+        <div class="ticket">
+          <div class="t-head"><span class="t-k"><span lang="it">Formato</span><span lang="en">Format</span></span><h3><span lang="it">Incontro – conferenza</span><span lang="en">Talk – lecture</span></h3></div>
+          <div class="t-dur"><b>60</b> <span lang="it">min</span><span lang="en">min</span></div>
+          <dl class="t-meta"><div><dt><span lang="it">Lingue</span><span lang="en">Languages</span></dt><dd><span lang="it">IT · EN · FR</span><span lang="en">IT · EN · FR</span></dd></div><div><dt><span lang="it">Ideale per</span><span lang="en">Best for</span></dt><dd><span lang="it">Centri culturali, associazioni</span><span lang="en">Cultural centres, associations</span></dd></div></dl>
+        </div>
       </div>
       <div class="offer">
         <div><strong><span lang="it">Progetti su misura</span><span lang="en">Tailored projects</span></strong><p lang="it">Costruiamo ogni proposta con il partner: testo, lingua, durata e pubblico.</p><p lang="en">We build each proposal with the partner: text, language, length and audience.</p></div>
@@ -525,7 +683,7 @@ header.top.over .brand i{color:var(--yellow)}
 <dialog class="work" id="w1" aria-labelledby="w1-t">
   <div class="head">
     <button class="close" type="button" aria-label="Chiudi / Close">×</button>
-    <div class="yr">Eduardo De Filippo · 1946</div>
+    <div class="yr">Eduardo De Filippo · <span style="white-space:nowrap">1946 – ∞</span></div>
     <h3 id="w1-t">These Caspers</h3>
     <div class="og"><span lang="it">dall'originale</span><span lang="en">from the original</span> Questi fantasmi!</div>
   </div>
@@ -539,7 +697,7 @@ header.top.over .brand i{color:var(--yellow)}
 <dialog class="work" id="w2" aria-labelledby="w2-t">
   <div class="head">
     <button class="close" type="button" aria-label="Chiudi / Close">×</button>
-    <div class="yr">Eduardo De Filippo · 1945</div>
+    <div class="yr">Eduardo De Filippo · <span style="white-space:nowrap">1945 – ∞</span></div>
     <h3 id="w2-t">Million Dollar City</h3>
     <div class="og"><span lang="it">dall'originale</span><span lang="en">from the original</span> Napoli milionaria!</div>
   </div>
@@ -553,7 +711,7 @@ header.top.over .brand i{color:var(--yellow)}
 <dialog class="work" id="w3" aria-labelledby="w3-t">
   <div class="head">
     <button class="close" type="button" aria-label="Chiudi / Close">×</button>
-    <div class="yr">Eduardo De Filippo · 1940</div>
+    <div class="yr">Eduardo De Filippo · <span style="white-space:nowrap">1940 – ∞</span></div>
     <h3 id="w3-t">Authorization Denied</h3>
     <div class="og"><span lang="it">dall'originale</span><span lang="en">from the original</span> Non ti pago</div>
   </div>
@@ -577,7 +735,13 @@ header.top.over .brand i{color:var(--yellow)}
   var root=document.documentElement;
   root.classList.add('js');
   var hdr=document.querySelector('header.top'),hero=document.getElementById('hero');
-  function onScroll(){hdr.classList.toggle('over',window.scrollY<hero.offsetHeight-70)}
+  var burger=document.getElementById('burger');
+    var cur=document.getElementById('curtain');
+  function setOpen(o){hdr.classList.toggle('open',o);document.body.classList.toggle('menu-open',o);burger.setAttribute('aria-expanded',o?'true':'false');cur.setAttribute('aria-hidden',o?'false':'true');cur.querySelectorAll('a').forEach(function(a){a.tabIndex=o?0:-1})}
+  burger.addEventListener('click',function(){setOpen(!hdr.classList.contains('open'))});
+  cur.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setOpen(false)})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setOpen(false)});
+  function onScroll(){var over=window.scrollY<hero.offsetHeight-70;hdr.classList.toggle('over',over)}
   window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
   if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=(i%9*0.04)+'s';io.observe(el)})}else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in')})}
   function set(l){
